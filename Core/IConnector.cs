@@ -23,72 +23,68 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// This interface represents a connector. A connector is a collection of synapses connecting
-    /// two layers in a network.
+    /// 此接口表示连接器。 连接器是连接网络中两个层的突触的集合。
     /// </summary>
     public interface IConnector : ISerializable
     {
         /// <summary>
-        /// Gets the source layer
+        /// 获取源图层
         /// </summary>
         /// <value>
-        /// The source layer. It is never <c>null</c>.
+        /// 源层。 它永不会为null。
         /// </value>
         ILayer SourceLayer { get; }
 
         /// <summary>
-        /// Gets the target layer
+        /// 获取目标图层
         /// </summary>
         /// <value>
-        /// The target layer. It is never <c>null</c>.
+        /// 目标层。 它永不为null。
         /// </value>
         ILayer TargetLayer { get; }
 
         /// <summary>
-        /// Gets the number of synapses in the connector. 
+        /// 获取连接器中的突触数。
         /// </summary>
         /// <value>
-        /// Synapse Count. It is always positive.
+        /// 突触计数。 它始终是正的。
         /// </value>
         int SynapseCount { get; }
 
         /// <summary>
-        /// Exposes an enumerator to iterate over all synapses in the connector.
+        /// 公开一个枚举器来迭代连接器中的所有突触。
         /// </summary>
         /// <value>
-        /// Synapses Enumerator. No synapse enumerated can be <c>null</c>.
+        /// 突触枚举。 枚举的突触不能为null。
         /// </value>
         IEnumerable<ISynapse> Synapses { get; }
 
         /// <summary>
-        /// Gets the connection mode
+        /// 获取连接模式
         /// </summary>
         /// <value>
-        /// Connection Mode
+        /// 连接模式
         /// </value>
         ConnectionMode ConnectionMode { get; }
 
         /// <summary>
-        /// Gets or sets the Initializer used to initialize the connector
+        /// 获取或设置用于初始化连接器的初始化程序
         /// </summary>
         /// <value>
-        /// Initializer used to initialize the connector. If this value is <c>null</c>, initialization
-        /// is NOT performed.
+        /// 初始化用于初始化连接器。 如果此值为null，则不执行初始化。
         /// </value>
         IInitializer Initializer { get; set; }
 
         /// <summary>
-        /// Initializes all synapses in the connector and makes them ready to undergo training
-        /// freshly. (Adjusts the weights of synapses using the initializer)
+        /// 初始化连接器中的所有突触，并使其准备好进行新训练。 （使用初始化器调整突触的权重）
         /// </summary>
         void Initialize();
 
         /// <summary>
-        /// Adds small random noise to weights of synapses so that the network deviates from its
-        /// local optimum position (a local equilibrium state where further learning is of no use)
+        /// 将微弱的随机噪声添加到突触的权重，使得网络偏离其局部最优位置（深度学习中没有用到局部平衡状态）
         /// </summary>
         /// <param name="jitterNoiseLimit">
-        /// Maximum absolute limit to the random noise added
+        /// 对随机噪声的最大值的绝对值限制
         /// </param>
         void Jitter(double jitterNoiseLimit);
     }

@@ -24,41 +24,40 @@ using NeuronDotNet.Core.SOM;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// Initializer interface. An initializer should define initialization methods for all concrete
-    /// initializable layers and connectors.
+    /// 初始化接口。 初始化器应该为所有具体的可初始化层和连接器定义初始化方法。
     /// </summary>
     public interface IInitializer : ISerializable
     {
         /// <summary>
-        /// Initializes bias values of activation neurons in an activation layer.
+        /// 初始化激活层中激活神经元的偏置值。
         /// </summary>
         /// <param name="activationLayer">
-        /// The activation layer to initialize
+        /// 活动层初始化
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If <c>activationLayer</c> is <c>null</c>
+        /// 如果活动层为null
         /// </exception>
         void Initialize(ActivationLayer activationLayer);
 
         /// <summary>
-        /// Initializes weights of all backpropagation synapses in a backpropagation connector.
+        /// 初始化反向传播连接器中所有反向传播突触的权重。
         /// </summary>
         /// <param name="connector">
-        /// The backpropagation connector to initialize.
+        /// 反向传播连接器初始化。
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If <c>connector</c> is <c>null</c>
+        /// 如果connector为null
         /// </exception>
         void Initialize(BackpropagationConnector connector);
 
         /// <summary>
-        /// Initializes weights of all spatial synapses in a Kohonen connector.
+        /// 初始化Kohonen连接器中所有空间突触的权重。
         /// </summary>
         /// <param name="connector">
-        /// The Kohonen connector to initialize.
+        /// Kohonen连接器初始化。
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If <c>connector</c> is <c>null</c>
+        /// 如果connector为null
         /// </exception>
         void Initialize(KohonenConnector connector);
     }

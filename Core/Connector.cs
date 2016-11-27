@@ -27,9 +27,9 @@ namespace NeuronDotNet.Core
     /// <summary>
     /// 连接器表示连接网络中两个层的突触的集合。
     /// </summary>
-    /// <typeparam name="TSourceLayer">    </typeparam>
-    /// <typeparam name="TTargetLayer">Type of Target Layer</typeparam>
-    /// <typeparam name="TSynapse">Type of Synapse</typeparam>
+    /// <typeparam name="TSourceLayer">源层类型</typeparam>
+    /// <typeparam name="TTargetLayer">目标层类型</typeparam>
+    /// <typeparam name="TSynapse">突触类型</typeparam>
     [Serializable]
     public abstract class Connector<TSourceLayer, TTargetLayer, TSynapse> : IConnector
         where TSourceLayer : ILayer
@@ -37,35 +37,35 @@ namespace NeuronDotNet.Core
         where TSynapse : ISynapse
     {
         /// <summary>
-        /// 源层。它在构造函数中初始化，以后不会更改。它永远不会<c> null </ c>。
+        /// 源层。它在构造函数中初始化，并且以后不会更改。它永不为null。
         /// </summary>
         protected readonly TSourceLayer sourceLayer;
 
         /// <summary>
-        /// 目标层。它在构造函数中初始化，以后不会更改。它永远不会<c> null </ c>。
+        /// 目标层。它在构造函数中初始化，并且以后不会更改。它永不为null。
         /// </summary>
         protected readonly TTargetLayer targetLayer;
 
         /// <summary>
-        /// 连接器中的突触数组。它永远不会<c> null </ c>。
+        /// 连接器中的突触数组。它永不为null。
         /// </summary>
         protected readonly TSynapse[] synapses;
 
         /// <summary>
-        /// 连接模式（一对一或完成）。它在构造函数中初始化并且是不可变的。
+        /// 连接模式（单一连接模式或完全连接模式）。它在构造函数中初始化并且是不可变的。
         /// </summary>
         protected readonly ConnectionMode connectionMode;
 
         /// <summary>
-        /// 初始化用于初始化连接器
+        /// 初始化连接器
         /// </summary>
         protected IInitializer initializer;
 
         /// <summary>
-        /// Gets the source layer
+        /// 获取源层
         /// </summary>
         /// <value>
-        /// The source layer. It is never <c>null</c>.
+        /// 源层。它用不为null。
         /// </value>
         public TSourceLayer SourceLayer
         {
@@ -73,10 +73,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the target layer
+        /// 获取目标层
         /// </summary>
         /// <value>
-        /// The target layer. It is never <c>null</c>.
+        /// 目标层。它永不为null。
         /// </value>
         public TTargetLayer TargetLayer
         {
@@ -84,10 +84,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the number of synapses in the connector. 
+        /// 获取连接器中的突触数。
         /// </summary>
         /// <value>
-        /// Synapse Count. It is always positive.
+        /// 突触计数。 它始终是正的。
         /// </value>
         public int SynapseCount
         {
@@ -95,10 +95,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Exposes an enumerator to iterate over all synapses in the connector.
+        /// 公开一个枚举器来迭代连接器中的所有突触。
         /// </summary>
         /// <value>
-        /// Synapses Enumerator. No synapse enumerated can be <c>null</c>.
+        /// 突触枚举。 没有枚举的突触可以为null。
         /// </value>
         public IEnumerable<TSynapse> Synapses
         {
@@ -133,10 +133,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the connection mode
+        /// 获取连接模式
         /// </summary>
         /// <value>
-        /// Connection Mode
+        /// 连接模式
         /// </value>
         public ConnectionMode ConnectionMode
         {
@@ -144,11 +144,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets or sets the Initializer used to initialize the connector
+        /// 获取或设置用于初始化连接器的初始化程序
         /// </summary>
         /// <value>
-        /// Initializer used to initialize the connector. If this value is <c>null</c>, initialization
-        /// is NOT performed.
+        /// 初始化用于初始化连接器。 如果此值为null，则不执行初始化。
         /// </value>
         public IInitializer Initializer
         {
@@ -157,22 +156,22 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Creates a new connector between given layers using the connection mode specified.
+        /// 使用指定的连接模式在给定图层之间创建新连接器。
         /// </summary>
         /// <param name="sourceLayer">
-        /// the source layer
+        /// 源层
         /// </param>
         /// <param name="targetLayer">
-        /// the target layer
+        /// 目标层
         /// </param>
         /// <param name="connectionMode">
-        /// connection mode to use
+        /// 使用的连接模式
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>sourceLayer</c> or <c>targetLayer</c> is <c>null</c>
+        /// 如果源层或目标层为null
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If <c>connectionMode</c> is invalid
+        /// 如果连接模式无效
         /// </exception>
         protected Connector(TSourceLayer sourceLayer, TTargetLayer targetLayer, ConnectionMode connectionMode)
         {
@@ -188,7 +187,7 @@ namespace NeuronDotNet.Core
             this.connectionMode = connectionMode;
             this.initializer = new NguyenWidrowFunction();
 
-            // Since synapses array is readonly, it should be initialized here
+            // 因为突触数组是只读的，所以应该在这里初始化
             switch (connectionMode)
             {
                 case ConnectionMode.Complete:
@@ -208,16 +207,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Deserialization constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 用于反序列化和获取数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果info为null
         /// </exception>
         protected Connector(SerializationInfo info, StreamingContext context)
         {
@@ -243,16 +242,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the connector
+        /// 使用序列化信息和所需的数据来序列化连接器
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果info为null
         /// </exception>
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -265,11 +264,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Adds small random noise to weights of synapses so that the network deviates from its
-        /// local optimum position (a local equilibrium state where further learning is of no use)
+        /// 将微弱的随机噪声添加到突触的权重，使得网络偏离其局部最优位置（深度学习中没有用到局部平衡状态）
         /// </summary>
         /// <param name="jitterNoiseLimit">
-        /// Maximum absolute limit to the random noise added
+        /// 对随机噪声的最大值的绝对值限制
         /// </param>
         public void Jitter(double jitterNoiseLimit)
         {
@@ -280,15 +278,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets a enumerator to a collection of source synapses of the neuron which belong to this
-        /// connector
+        /// 获取属于此连接器的神经元的源突触集合的枚举器
         /// </summary>
         /// <param name="neuron">
-        /// Neuron
+        /// 神经元
         /// </param>
         /// <returns>
-        /// An enumerator to a collection of source synapses of the neuron which belong to this
-        /// connector
+        /// 属于此连接器的神经元的源突触的集合的枚举器
         /// </returns>
         public IEnumerable<TSynapse> GetSourceSynapses(INeuron neuron)
         {
@@ -302,15 +298,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets a enumerator to a collection of target synapses of the neuron which belong to this
-        /// connector
+        /// 获取属于此连接器的神经元的目标突触的集合的枚举器
         /// </summary>
         /// <param name="neuron">
-        /// Neuron
+        /// 神经元
         /// </param>
         /// <returns>
-        /// An enumerator to a collection of target synapses of the neuron which belong to this
-        /// connector
+        /// 属于此连接器的神经元的目标突触的集合的枚举器
         /// </returns>
         public IEnumerable<TSynapse> GetTargetSynapses(INeuron neuron)
         {
@@ -324,8 +318,7 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Initializes all synapses in the connector and makes them ready to undergo training
-        /// freshly. (Adjusts the weights of synapses using the initializer)
+        /// 初始化连接器中的所有突触，并使其准备好进行新训练。 （使用初始化器调整突触的权重）
         /// </summary>
         public abstract void Initialize();
     }

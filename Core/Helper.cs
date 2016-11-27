@@ -29,7 +29,7 @@ namespace NeuronDotNet.Core
         private static readonly Random random = new Random();
 
         /// <summary>
-        /// 验证值不是<c> null </ c>。
+        /// 验证值不为null。
         /// </summary>
         /// <param name="value">
         /// 要验证的值
@@ -38,7 +38,7 @@ namespace NeuronDotNet.Core
         /// 参数的名称
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// 如果<c>值</ c>为<c> null </ c>
+        /// 如果值为null
         /// </exception>
         internal static void ValidateNotNull(object value, string name)
         {
@@ -72,16 +72,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Validates that a numerical argument is not negative
+        /// 验证数值参数不为负数
         /// </summary>
         /// <param name="value">
-        /// The numerical value to validate
+        /// 要验证的数值
         /// </param>
         /// <param name="name">
-        /// The name of the argument
+        /// 参数的名称
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If the value is negative
+        /// 如果值为负数
         /// </exception>
         internal static void ValidateNotNegative(double value, string name)
         {
@@ -92,16 +92,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Validates that a numerical argument is positive
+        /// 验证数值参数是正数
         /// </summary>
         /// <param name="value">
-        /// The numerical value to validate
+        /// 要验证的数值
         /// </param>
         /// <param name="name">
-        /// The name of the argument
+        /// 参数的名称
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If value is zero or negative
+        /// 如果值为零或负值
         /// </exception>
         internal static void ValidatePositive(double value, string name)
         {
@@ -112,22 +112,22 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Validates that a numerical argument is within the given range
+        /// 验证数值参数是否在给定范围内
         /// </summary>
         /// <param name="value">
-        /// The value to validate
+        /// 要验证的值
         /// </param>
         /// <param name="min">
-        /// Minimum acceptable value
+        /// 最小可接受值
         /// </param>
         /// <param name="max">
-        /// Maximum acceptable value
+        /// 最大可接受值
         /// </param>
         /// <param name="name">
-        /// The name of the argument
+        /// 参数的名称
         /// </param>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// If the <c>value</c> does not lie within the specified range
+        /// 如果值不在指定范围内
         /// </exception>
         internal static void ValidateWithinRange(double value, double min, double max, string name)
         {
@@ -138,10 +138,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Random Generator. Returns a random double between 0 and 1
+        /// 随机生成器。 返回0和1之间的随机双精度值
         /// </summary>
         /// <returns>
-        /// A random double between 0 and 1
+        /// 0和1之间的随机双精度
         /// </returns>
         internal static double GetRandom()
         {
@@ -149,10 +149,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Random Generator. Returns a random double between specified minimum and maximum values
+        /// 随机生成器。 返回指定的最小值和最大值之间的随机双精度值
         /// </summary>
         /// <returns>
-        /// A random double between <c>min</c> and <c>max</c>
+        /// 最小和最大之间的随机双精度
         /// </returns>
         internal static double GetRandom(double min, double max)
         {
@@ -164,25 +164,25 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Generates an array of given size containing integers from 0 to 'size - 1' in random order
+        /// 生成包含从0到'size-1'的随机顺序的给定大小的数组
         /// </summary>
         /// <param name="size">
-        /// Size of the array to generate.
+        /// 要生成的数组的大小。
         /// </param>
         /// <returns>
-        /// The generated array.
+        /// 生成的数组。
         /// </returns>
         internal static int[] GetRandomOrder(int size)
         {
             int[] randomOrder = new int[size];
 
-            //Initialize the array serially
+            //串联初始化数组
             for (int i = 0; i < size; i++)
             {
                 randomOrder[i] = i;
             }
 
-            //Swap ith element with random elements for all position i.
+            //用所有位置i的随机元素交换第i个元素。
             for (int i = 0; i < size; i++)
             {
                 int randomPosition = random.Next(size);
@@ -194,13 +194,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Normalizes a vector of doubles
+        /// 规范化双精度向量
         /// </summary>
         /// <param name="vector">
-        /// The vector to normalize. This array is not modified by the function.
+        /// 向量归一化。 此数组不由函数修改。
         /// </param>
         /// <returns>
-        /// The normalized output
+        /// 标准化输出
         /// </returns>
         internal static double[] Normalize(double[] vector)
         {
@@ -208,27 +208,27 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Normalizes a vector of doubles
+        /// 规范化双精度向量
         /// </summary>
         /// <param name="vector">
-        /// The vector to normalize. This array is not modified by the function.
+        /// 向量归一化。 此数组不由函数修改。
         /// </param>
         /// <param name="magnitude">
-        /// Magnitude
+        /// 大小
         /// </param>
         /// <returns>
-        /// The normalized output
+        /// 标准化输出
         /// </returns>
         internal static double[] Normalize(double[] vector, double magnitude)
         {
-            // Calculate the root of sum of squares
+            // 计算平方和的根
             double factor = 0d;
             for (int i = 0; i < vector.Length; i++)
             {
                 factor += vector[i] * vector[i];
             }
 
-            // Divide each value with the root of sum of squares
+            // 将每个值与平方和的根相除
             double[] normalizedVector = new double[vector.Length];
             if (factor != 0)
             {
@@ -242,16 +242,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Helper to obtain random normal values
+        /// 帮助获得随机正态值
         /// </summary>
         /// <param name="count">
-        /// Number of values to get
+        /// 要获取的值数
         /// </param>
         /// <param name="magnitude">
-        /// Magnitude of the vector
+        /// 矢量的大小
         /// </param>
         /// <returns>
-        /// An array containing specified number of normalized random doubles
+        /// 包含指定数量的标准化随机双精度数组
         /// </returns>
         internal static double[] GetRandomVector(int count, double magnitude)
         {
