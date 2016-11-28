@@ -22,45 +22,43 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// Learning Rate Function interface. This interface defines the way in which learning rate
-    /// changes from its initial value to its final value as the training progresses.
+    /// 学习速率函数接口。 该接口定义了随着训练进展，学习速率从其初始值改变到其最终值的方式。
     /// </summary>
     public interface ILearningRateFunction : ISerializable
     {
         /// <summary>
-        /// Gets the initial value of learning rate
+        /// 获取学习率的初始值
         /// </summary>
         /// <value>
-        /// Initial Learning Rate
+        /// 初始学习率
         /// </value>
         double InitialLearningRate { get; }
 
         /// <summary>
-        /// Gets the final value of learning rate
+        /// 获得学习率的最终值
         /// </summary>
         /// <value>
-        /// Final Learning Rate
+        /// 最终学习率
         /// </value>
         double FinalLearningRate { get; }
 
         /// <summary>
-        /// Gets effective learning rate for current training iteration. No validation is performed
-        /// on the arguments.
+        /// 获得当前训练迭代的有效学习率。 不对参数执行验证。
         /// </summary>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingEpochs">
-        /// Total number of training epochs
+        /// 总训练迭代
         /// </param>
         /// <returns>
-        /// The effective learning rate for current training iteration
+        /// 当前训练迭代的有效学习率
         /// </returns>
         /// <exception cref="System.ArgumentException">
-        /// If <c>trainingEpochs</c> is zero or negative
+        /// 如果训练次数为零或负数
         /// </exception>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// If <c>currentIteration</c> is negative or, if it is not less than <c>trainingEpochs</c>
+        /// 如果当前迭代为负，或者大于训练总次数
         /// </exception>
         double GetLearningRate(int currentIteration, int trainingEpochs);
     }
