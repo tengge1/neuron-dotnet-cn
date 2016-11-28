@@ -24,228 +24,211 @@ namespace NeuronDotNet.Core
 {
     /// <summary>
     /// <para>
-    /// This interface represents a neural network. A  A typical neural network consists of a set of
-    /// <see cref="ILayer"/>s acyclically interconnected by various <see cref="IConnector"/>s. Input
-    /// layer gets the input from the user and network output is obtained from the output layer.
+    /// 这个接口代表一个神经网络。 典型的神经网络由一组由各种非循环互连组成。 输入层获得用户的输入，网络输出从输出层获得。
     /// </para>
     /// <para>
-    /// To create a neural network, follow these steps
+    /// 要创建神经网络，请按照下列步骤操作
     /// <list type="bullet">
-    /// <item>Create and customize layers</item>
-    /// <item>Establish connections between layers (No cycles should exist)</item>
-    /// <item>Construct Network specifying the desired input and output layers</item>
+    /// <item>创建和自定义图层</item>
+    /// <item>在层之间建立连接（不存在周期）</item>
+    /// <item>构造网络指定所需的输入和输出层</item>
     /// </list>
     /// </para>
     /// <para>
-    /// There are two modes in which a neural network can be trained. In 'Batch Training', the neural
-    /// network is allowed to learn by specifying a predefined training set containing various training
-    /// samples. In 'Online training mode', a random training sample is generated every time (usually
-    /// by another neural network, called 'teacher' network) and is used for training. Both modes are
-    /// supported by overloaded <c>Learn()</c> methods. <c>Run()</c> method is used to run a neural
-    /// network against a particular input.
+    /// 有两种模式可以训练神经网络。 在“批量训练”中，允许神经网络通过指定包含各种训练样本的预定义训练集来学习。 在“在线训练模式”中，每次产生随机训练样本（通常由另一个神经网络，称为“教师”网络）并用于训练。 两种模式都由重载的Learn()方法支持。 Run()方法用于针对特定输入运行神经网络。
     /// </para>
     /// </summary>
     public interface INetwork : ISerializable
     {
         /// <summary>
-        /// Gets the input layer of the network
+        /// 获取网络的输入层
         /// </summary>
         /// <value>
-        /// Input Layer of the network. This property is never <c>null</c>.
+        /// 输入网络层。 此属性永远不为空。
         /// </value>
         ILayer InputLayer { get; }
 
         /// <summary>
-        /// Gets the output layer of the network
+        /// 获取网络的输出层
         /// </summary>
         /// <value>
-        /// Output Layer of the network. This property is never <c>null</c>.
+        /// 输出网络层。 此属性永远不为空。
         /// </value>
         ILayer OutputLayer { get; }
 
         /// <summary>
-        /// Gets the number of layers in the network.
+        /// 获取网络中的层数。
         /// </summary>
         /// <value>
-        /// Layer Count. This value is always positive.
+        /// 层计数。 此值始终为正。
         /// </value>
         int LayerCount { get; }
 
         /// <summary>
-        /// Exposes an enumerator to iterate over layers in the network.
+        /// 显示枚举器以迭代网络中的图层。
         /// </summary>
         /// <value>
-        /// Layer Enumerator. No layer in the network can be <c>null</c>.
+        /// 层枚举。 网络中的任何图层都不能为空。
         /// </value>
         IEnumerable<ILayer> Layers { get; }
 
         /// <summary>
-        /// Layer Indexer
+        /// 层索引器
         /// </summary>
         /// <param name="index">
-        /// The index
+        /// 索引
         /// </param>
         /// <returns>
-        /// Layer at the given index
+        /// 图层在给定的索引
         /// </returns>
         /// <exception cref="System.IndexOutOfRangeException">
-        /// If the index is out of range
+        /// 如果索引超出范围
         /// </exception>
         ILayer this[int index] { get; }
 
         /// <summary>
-        /// Gets the number of connectors in the network.
+        /// 获取网络中的连接器数量。
         /// </summary>
         /// <value>
-        /// Connector Count. This value is never negative.
+        /// 连接器计数。 此值从不为负。
         /// </value>
         int ConnectorCount { get; }
 
         /// <summary>
-        /// Exposes an enumerator to iterate over connectors in the network. 
+        /// 公开一个枚举器来迭代网络中的连接器。
         /// </summary>
         /// <value>
-        /// Connector Enumerator. No connector in a network can be <c>null</c>.
+        /// 连接器枚举器。 网络中没有连接器可以为null。
         /// </value>
         IEnumerable<IConnector> Connectors { get; }
 
         /// <summary>
-        /// Gets or sets maximum absolute limit to the jitter noise
+        /// 获取或设置抖动噪声的最大绝对限制
         /// </summary>
         /// <value>
-        /// Maximum absolute limit to the random noise added while <c>Jitter</c>
+        /// 抖动时添加的随机噪声的最大绝对限制
         /// </value>
         double JitterNoiseLimit { get; set; }
 
         /// <summary>
-        /// Gets or sets the jitter epoch
+        /// 获取或设置抖动纪元
         /// </summary>
         /// <value>
-        /// The epoch (interval) at which jitter is performed. If this value is not positive, no
-        /// jitter is performed.
+        /// 执行抖动的时期（间隔）。 如果此值不为正，则不执行抖动。
         /// </value>
         int JitterEpoch { get; set; }
 
         /// <summary>
-        /// This event is invoked during the commencement of a new training iteration during 'Batch
-        /// training' mode.
+        /// 在“批处理训练”模式期间在新的训练迭代的开始期间调用该事件。
         /// </summary>
         event TrainingEpochEventHandler BeginEpochEvent;
 
         /// <summary>
-        /// This event is invoked whenever the network is about to learn a training sample.
+        /// 当网络即将学习训练样本时，调用此事件。
         /// </summary>
         event TrainingSampleEventHandler BeginSampleEvent;
 
         /// <summary>
-        /// This event is invoked whenever the network has successfully completed learning a training
-        /// sample.
+        /// 每当网络成功完成学习训练样本时，调用此事件。
         /// </summary>
         event TrainingSampleEventHandler EndSampleEvent;
 
         /// <summary>
-        /// This event is invoked whenever a training iteration is successfully completed during 'Batch
-        /// training' mode.
+        /// 每当在“批处理训练”模式期间成功完成训练迭代时，将调用此事件。
         /// </summary>
         event TrainingEpochEventHandler EndEpochEvent;
 
         /// <summary>
-        /// Sets the learning rate to the given value. All layers in the network will use this constant
-        /// value as learning rate during the learning process.
+        /// 将学习速率设置为给定值。 网络中的所有层将在学习过程中使用该常数值作为学习速率。
         /// </summary>
         /// <param name="learningRate">
-        /// The learning rate
+        /// 学习率
         /// </param>
         void SetLearningRate(double learningRate);
 
         /// <summary>
-        /// Sets the initial and final values for learning rate. During the learning process, all
-        /// layers in the network will use an efeective learning rate which varies uniformly from
-        /// the initial value to the final value.
+        /// 设置学习率的初始值和最终值。 在学习过程中，所有网络中的层将使用从一致地变化的有效学习速率将初始值转换为最终值。
         /// </summary>
         /// <param name="initialLearningRate">
-        /// Initial value of learning rate
+        /// 学习率的初始值
         /// </param>
         /// <param name="finalLearningRate">
-        /// Final value of learning rate
+        /// 学习率的最终值
         /// </param>
         void SetLearningRate(double initialLearningRate, double finalLearningRate);
 
         /// <summary>
-        /// Sets the learning rate function.
+        /// 设置学习速率函数。
         /// </summary>
         /// <param name="learningRateFunction">
-        /// Learning rate function to use.
+        /// 学习率函数使用。
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If <c>learningRateFunction</c> is <c>null</c>
+        /// 如果学习速率函数为null
         /// </exception>
         void SetLearningRate(ILearningRateFunction learningRateFunction);
 
         /// <summary>
-        /// Initializes all layers and connectors and makes them ready to undergo fresh training.
+        /// 初始化所有层和连接器，使他们准备接受新的培训。
         /// </summary>
         void Initialize();
 
         /// <summary>
-        /// Runs the neural network against the given input
+        /// 针对给定的输入运行神经网络
         /// </summary>
         /// <param name="input">
-        /// Input to the network
+        /// 输入到网络
         /// </param>
         /// <returns>
-        /// The output of the network
+        /// 网络的输出
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// If input array is <c>null</c>
+        /// 如果输入数组为null
         /// </exception>
         double[] Run(double[] input);
 
         /// <summary>
-        /// Trains the neural network for the given training set (Batch Training)
+        /// 训练给定训练集的神经网络（批处理训练）
         /// </summary>
         /// <param name="trainingSet">
-        /// The training set to use
+        /// 训练集使用
         /// </param>
         /// <param name="trainingEpochs">
-        /// Number of training epochs. (All samples are trained in some random order, in every
-        /// training epoch)
+        /// 训练时期数。 （所有样本在每个训练时期以一些随机顺序训练）
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// if <c>trainingSet</c> is <c>null</c>
+        /// 如果训练集为null
         /// </exception>
         /// <exception cref="System.ArgumentException">
-        /// if <c>trainingEpochs</c> is zero or negative
+        /// 如果训练时期是零或负数
         /// </exception>
         void Learn(TrainingSet trainingSet, int trainingEpochs);
 
         /// <summary>
-        /// Trains the network for the given training sample (Online training mode). Note that this
-        /// method trains the sample only once, irrespective of what current epoch is. The arguments
-        /// are just used to evaluate training progress and adjust parameter values depending on it.
+        /// 训练给定训练样本的网络（在线训练模式）。 注意这个方法仅训练样本一次，而不管当前的时期是什么。 参数只是用来评估训练进度和根据它调整参数值。
         /// </summary>
         /// <param name="trainingSample">
-        /// Training sample to use
+        /// 使用的培训样品
         /// </param>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingEpochs">
-        /// Number of training epochs
+        /// 训练次数
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If <c>trainingSample</c> is <c>null</c>
+        /// 如果训练样本为null
         /// </exception>
         /// <exception cref="System.ArgumentException">
-        /// If <c>trainingEpochs</c> is not positive
+        /// 如果训练次数不是正数
         /// </exception>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// If <c>currentIteration</c> is negative or, if it is not less than <c>trainingEpochs</c>
+        /// 如果当前迭代次数是负数，或者如果它大于训练总次数
         /// </exception>
-        void Learn(TrainingSample trainingSample, int currentIteration , int trainingEpochs);
+        void Learn(TrainingSample trainingSample, int currentIteration, int trainingEpochs);
 
         /// <summary>
-        /// If the network is currently learning, this method stops the learning.
+        /// 如果网络当前正在学习，则该方法停止学习。
         /// </summary>
         void StopLearning();
     }

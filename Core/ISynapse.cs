@@ -20,65 +20,60 @@
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// This interface represents a synapse in a network. A Synapse is responsible for communication
-    /// between neurons. A typical neural network consists of millions of synapses. The functioning
-    /// of a neural network significantly depends on the <c>Weight</c>s of these synpases.
+    /// 此接口表示网络中的突触。 突触负责神经元之间的通信。 典型的神经网络由数百万突触组成。 神经网络的功能取决于这些突触的权重。
     /// </summary>
     public interface ISynapse
     {
         /// <summary>
-        /// Gets or sets the weight of the synapse
+        /// 获取或设置突触的权重
         /// </summary>
         /// <value>
-        /// Weight of the synapse
+        /// 突触的权重
         /// </value>
         double Weight { get; set; }
 
         /// <summary>
-        /// Gets the parent connector
+        /// 获取父连接器
         /// </summary>
         /// <value>
-        /// Parent connector containing this synapse. It is never <c>null</c>.
+        /// 包含此突触的父连接器。 它永远不会为空。
         /// </value>
         IConnector Parent { get; }
 
         /// <summary>
-        /// Gets the source neuron
+        /// 获取源神经元
         /// </summary>
         /// <value>
-        /// The source neuron of the synapse. It is never <c>null</c>.
+        /// 突触的源神经元。 它永远不会为空。
         /// </value>
         INeuron SourceNeuron { get; }
 
         /// <summary>
-        /// Gets the target neuron
+        /// 获取目标神经元
         /// </summary>
         /// <value>
-        /// The target neuron of the synapse. It is never <c>null</c>.
+        /// 突触的目标神经元。 它永远不会为空。
         /// </value>
         INeuron TargetNeuron { get; }
 
         /// <summary>
-        /// Propagates the information from source neuron to the target neuron
+        /// 将信息从源神经元传播到目标神经元
         /// </summary>
         void Propagate();
 
         /// <summary>
-        /// Optimizes weight of this synapse
+        /// 优化这个突触的重量
         /// </summary>
         /// <param name="learningFactor">
-        /// Effective learning factor. This is mainly a function of training progress and learning
-        /// rate. It can also depend on other factors like neighborhood function in Kohonen networks.
+        /// 有效学习因素。 这主要是训练进度和学习的函数率。 它也可以取决于其他因素，如Kohonen网络中的邻域函数。
         /// </param>
         void OptimizeWeight(double learningFactor);
 
         /// <summary>
-        /// Adds small random noise to weight of this synapse so that the network deviates from
-        /// its local optimum position (a local equilibrium state where further learning is of
-        /// no use)
+        /// 添加小随机噪声到这个突触的权重，以便网络偏离其局部最优位置（进一步学习对它无用的一个平衡状态）
         /// </summary>
         /// <param name="jitterNoiseLimit">
-        /// Maximum absolute limit to the random noise added
+        /// 对随机噪声的最大绝对限制
         /// </param>
         void Jitter(double jitterNoiseLimit);
     }

@@ -22,61 +22,60 @@ using System.Collections.Generic;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// Interface representing a neuron. A neuron is a basic building block of a neural network.
+    /// 神经元接口。 神经元是神经网络的基本单元。
     /// </summary>
     public interface INeuron
     {
         /// <summary>
-        /// Gets or sets the neuron input.
+        /// 获取或设置神经元输入。
         /// </summary>
         /// <value>
-        /// Input to the neuron. For input neurons, this value is specified by user, whereas other
-        /// neurons will have their inputs updated when the source synapses propagate
+        /// 输入到神经元。 对于输入神经元，该值由用户指定，而其他神经元将在源突触传播时更新其输入
         /// </value>
         double Input { get; set; }
 
         /// <summary>
-        /// Gets the output of the neuron.
+        /// 获取神经元的输出。
         /// </summary>
         /// <value>
-        /// Neuron Output
+        /// 神经元输出
         /// </value>
         double Output { get; }
 
         /// <summary>
-        /// Gets the list of source synapses associated with this neuron
+        /// 获取与这个神经元相关的源突触的列表
         /// </summary>
         /// <value>
-        /// A list of source synapses. It can neither be <c>null</c>, nor contain <c>null</c> elements.
+        /// 源突触的列表。 它既不能为null，也不能包含空元素。
         /// </value>
         IList<ISynapse> SourceSynapses { get; }
 
         /// <summary>
-        /// Gets the list of target synapses associated with this neuron
+        /// 获取与该神经元相关联的目标突触的列表
         /// </summary>
         /// <value>
-        /// A list of target synapses. It can neither be <c>null</c>, nor contains <c>null</c> elements.
+        /// 目标突触的列表。 它既不能为null，也不能包含空元素。
         /// </value>
         IList<ISynapse> TargetSynapses { get; }
 
         /// <summary>
-        /// Gets the parent layer containing this neuron
+        /// 获取包含此神经元的父层
         /// </summary>
         /// <value>
-        /// The parent layer containing this neuron. It is never <c>null</c>
+        /// 包含这个神经元的父层。 它永远不会为空
         /// </value>
         ILayer Parent { get; }
 
         /// <summary>
-        /// Runs the neuron. (Propagates the source synapses and update input and output values)
+        /// 运行神经元。 （传播源突触并更新输入和输出值）
         /// </summary>
         void Run();
 
         /// <summary>
-        /// Trains various parameters associated with this neuron and associated source synapses.
+        /// 训练与这个神经元和相关的源突触相关的各种参数。
         /// </summary>
         /// <param name="learningRate">
-        /// The current learning rate (this depends on training progress as well)
+        /// 当前学习率（这取决于培训进度）
         /// </param>
         void Learn(double learningRate);
     }

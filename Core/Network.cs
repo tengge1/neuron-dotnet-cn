@@ -25,100 +25,88 @@ namespace NeuronDotNet.Core
 {
     /// <summary>
     /// <para>
-    /// An abstract base class to represent a neural network. A typical neural network consists of a
-    /// set of <see cref="ILayer"/>s acyclically interconnected by various <see cref="IConnector"/>s.
-    /// Input layer gets the input from the user and network output is obtained from the output layer.
+    /// 一个抽象的基类来表示一个神经网络。 典型的神经网络由一组由各种非循环互连组成。 输入层获得用户的输入，网络输出从输出层获得。
     /// </para>
     /// <para>
-    /// To create a neural network, follow these steps
+    /// 要创建神经网络，请按照下列步骤操作
     /// <list type="bullet">
-    /// <item>Create and customize layers</item>
-    /// <item>Establish connections between layers (No cycles should exist)</item>
-    /// <item>Construct Network specifying the desired input and output layers</item>
+    /// <item>创建和自定义图层</item>
+    /// <item>在层之间建立连接（不存在周期）</item>
+    /// <item>构造网络指定所需的输入和输出层</item>
     /// </list>
     /// </para>
     /// <para>
-    /// There are two modes in which a neural network can be trained. In 'Batch Training', the neural
-    /// network is allowed to learn by specifying a predefined training set containing various training
-    /// samples. In 'Online training mode', a random training sample is generated every time (usually
-    /// by another neural network, called 'teacher' network) and is used for training. Both modes are
-    /// supported by overloaded <c>Learn()</c> methods. <c>Run()</c> method is used to run a neural
-    /// network against a particular input.
+    /// 有两种模式可以训练神经网络。 在“批量训练”中，允许神经网络通过指定包含各种训练样本的预定义训练集来学习。 在“在线训练模式”中，每次产生随机训练样本（通常由另一个神经网络，称为“教师”网络）并用于训练。 两种模式都由重载的Learn（）方法支持。 Run（）方法用于针对特定输入运行神经网络。
     /// </para>
     /// </summary>
     [Serializable]
     public abstract class Network : INetwork
     {
         /// <summary>
-        /// The input layer
+        /// 输入层
         /// </summary>
         protected readonly ILayer inputLayer;
 
         /// <summary>
-        /// The output layer
+        /// 输出层
         /// </summary>
         protected readonly ILayer outputLayer;
 
         /// <summary>
-        /// List of layers in the network, ordered acyclically (first layer being input layer and
-        /// last one being output layer)
+        /// 网络中的层列表，非循环地排序（第一层是输入层，最后一个是输出层）
         /// </summary>
         protected readonly IList<ILayer> layers;
 
         /// <summary>
-        /// A list of connectors between layers.
+        /// 层之间的连接器列表。
         /// </summary>
         protected readonly IList<IConnector> connectors;
 
         /// <summary>
-        /// The method of training used to train the network
+        /// 训练方法用于训练网络
         /// </summary>
         protected readonly TrainingMethod trainingMethod;
 
         /// <summary>
-        /// This event is invoked during the commencement of a new training iteration during 'Batch
-        /// training' mode.
+        /// 在“批处理训练”模式期间在新的训练迭代的开始期间调用该事件。
         /// </summary>
         public event TrainingEpochEventHandler BeginEpochEvent;
 
         /// <summary>
-        /// This event is invoked whenever the network is about to learn a training sample.
+        /// 当网络即将学习训练样本时，调用此事件。
         /// </summary>
         public event TrainingSampleEventHandler BeginSampleEvent;
 
         /// <summary>
-        /// This event is invoked whenever the network has successfully completed learning a training
-        /// sample.
+        /// 每当网络成功完成学习训练样本时，调用此事件。
         /// </summary>
         public event TrainingSampleEventHandler EndSampleEvent;
 
         /// <summary>
-        /// This event is invoked whenever a training iteration is successfully completed during 'Batch
-        /// training' mode.
+        /// 每当在“批处理训练”模式期间成功完成训练迭代时，将调用此事件。
         /// </summary>
         public event TrainingEpochEventHandler EndEpochEvent;
 
         /// <summary>
-        /// Epoch(interval) at which Jitter operation is performed. If this value is zero, not jitter is
-        /// performed.
+        /// 执行抖动操作的时间（间隔）。 如果该值为零，则不执行抖动。
         /// </summary>
         protected int jitterEpoch;
 
         /// <summary>
-        /// Maximum absolute limit to the random noise added during Jitter operation
+        /// 在抖动操作期间添加的随机噪声的最大绝对限制
         /// </summary>
         protected double jitterNoiseLimit;
 
         /// <summary>
-        /// This flag is set to true, whenever training needs to be stopped immmediately
+        /// 当需要立即停止训练时，此标志设置为true
         /// </summary>
         protected bool isStopping = false;
 
         /// <summary>
-        /// Gets the input layer of the network
+        /// 获取网络的输入层
         /// </summary>
         /// <value>
-        /// Input Layer of the network. This property is never <c>null</c>.
+        /// 输入网络层。 此属性永远不为空。
         /// </value>
         public ILayer InputLayer
         {
@@ -126,10 +114,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the output layer of the network
+        /// 获取网络的输出层
         /// </summary>
         /// <value>
-        /// Output Layer of the network. This property is never <c>null</c>.
+        /// 输出网络层。 此属性永远不为空。
         /// </value>
         public ILayer OutputLayer
         {
@@ -137,22 +125,22 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the number of layers in the network.
+        /// 获取网络中的层数。
         /// </summary>
         /// <value>
-        /// Layer Count. This value is always positive.
+        /// 层计数。 此值始终为正。
         /// </value>
         public int LayerCount
         {
-            // Note there can be networks (possibly in future versions) with only one layer
+            // 注意，可以有只有一个层的网络（可能在未来版本中）
             get { return layers.Count; }
         }
 
         /// <summary>
-        /// Exposes an enumerator to iterate over layers in the network.
+        /// 显示枚举器以迭代网络中的图层。
         /// </summary>
         /// <value>
-        /// Layer Enumerator. No layer in the network can be <c>null</c>.
+        /// 层枚举。 网络中的任何图层都不能为空。
         /// </value>
         public IEnumerable<ILayer> Layers
         {
@@ -166,16 +154,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Layer Indexer
+        ///层索引器
         /// </summary>
         /// <param name="index">
-        /// The index
+        /// 索引
         /// </param>
         /// <returns>
-        /// Layer at the given index
+        /// 在给定的索引的图层
         /// </returns>
         /// <exception cref="IndexOutOfRangeException">
-        /// If the index is out of range
+        ///如果索引超出范围
         /// </exception>
         public ILayer this[int index]
         {
@@ -183,10 +171,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the number of connectors in the network.
+        /// 获取网络中的连接器数量。
         /// </summary>
         /// <value>
-        /// Connector Count. This value is never negative.
+        /// 连接器计数。 此值从不为负。
         /// </value>
         public int ConnectorCount
         {
@@ -194,10 +182,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Exposes an enumerator to iterate over connectors in the network. 
+        /// 公开一个枚举器来迭代网络中的连接器。
         /// </summary>
         /// <value>
-        /// Connector Enumerator. No connector in a network can be <c>null</c>.
+        /// 连接器枚举器。 网络中没有连接器可以为null。
         /// </value>
         public IEnumerable<IConnector> Connectors
         {
@@ -211,10 +199,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets or sets maximum absolute limit to the jitter noise
+        /// 获取或设置抖动噪声的最大绝对限制
         /// </summary>
         /// <value>
-        /// Maximum absolute limit to the random noise added while <c>Jitter</c>
+        /// 抖动时添加的随机噪声的最大绝对限制
         /// </value>
         public double JitterNoiseLimit
         {
@@ -223,11 +211,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets or sets the jitter epoch
+        /// 获取或设置抖动纪元
         /// </summary>
         /// <value>
-        /// The epoch (interval) at which jitter is performed. If this value is not positive, no
-        /// jitter is performed.
+        /// 执行抖动的时期（间隔）。 如果此值不为正，则不执行抖动。
         /// </value>
         public int JitterEpoch
         {
@@ -236,56 +223,56 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Creates a new neural network
+        /// 创建一个新的神经网络
         /// </summary>
         /// <param name="inputLayer">
-        /// The input layer
+        /// 输入层
         /// </param>
         /// <param name="outputLayer">
-        /// The output layer
+        /// 输出层
         /// </param>
         /// <param name="trainingMethod">
-        /// Training method to use
+        /// 使用培训方法
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>inputLayer</c> or <c>outputLayer</c> is <c>null</c>.
+        /// 如果输入图层或输出图层为null。
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If <c>trainingMethod</c> is invalid
+        /// 如果训练方法无效
         /// </exception>
         protected Network(ILayer inputLayer, ILayer outputLayer, TrainingMethod trainingMethod)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(inputLayer, "inputLayer");
             Helper.ValidateNotNull(outputLayer, "outputLayer");
             Helper.ValidateEnum(typeof(TrainingMethod), trainingMethod, "trainingMethod");
-            
-            // Assign arguments to corresponding variables
+
+            // 将参数分配给相应的变量
             this.inputLayer = inputLayer;
             this.outputLayer = inputLayer;
             this.trainingMethod = trainingMethod;
-            
-            // Initialize jitter parameters with default values
+
+            // 使用默认值初始化抖动参数
             this.jitterEpoch = 73;
             this.jitterNoiseLimit = 0.03d;
 
-            // Create the list of layers and connectors
+            // 创建层和连接器的列表
             this.layers = new List<ILayer>();
             this.connectors = new List<IConnector>();
 
-            // Populate the lists by visiting layers topologically starting from input layer
+            // 通过从输入图层拓扑地访问图层来填充列表
             Stack<ILayer> stack = new Stack<ILayer>();
             stack.Push(inputLayer);
 
-            // Indegree map
+            // Indegree地图
             IDictionary<ILayer, int> inDegree = new Dictionary<ILayer, int>();
             while (stack.Count > 0)
             {
-                // Add 'top of stack' to list of layers
+                // 将“堆栈顶部”添加到图层列表
                 this.outputLayer = stack.Pop();
                 layers.Add(this.outputLayer);
 
-                // Add targetConnectors to connectors list making sure that they do not lead to cycle
+                // 将目标连接器添加到连接器列表，确保它们不会导致循环
                 foreach (IConnector connector in this.outputLayer.TargetConnectors)
                 {
                     connectors.Add(connector);
@@ -295,44 +282,43 @@ namespace NeuronDotNet.Core
                         throw new InvalidOperationException("Cycle Exists in the network structure");
                     }
 
-                    // Virtually remove this layer
+                    // 实际删除此图层
                     inDegree[targetLayer] =
                         inDegree.ContainsKey(targetLayer)
                         ? inDegree[targetLayer] - 1
                         : targetLayer.SourceConnectors.Count - 1;
 
-                    // Push unvisited target layer onto the stack, if its effective inDegree is zero
+                    // 将未访问的目标层推送到栈上，如果它的有效inDree值为零
                     if (inDegree[targetLayer] == 0)
                     {
                         stack.Push(targetLayer);
                     }
                 }
             }
-            // The last layer should be same as output layer
+            // 最后一层应该与输出层相同
             if (outputLayer != this.outputLayer)
             {
                 throw new ArgumentException("The outputLayer is invalid", "outputLayer");
             }
-            // Initialize the newly created network
+            // 初始化新创建的网络
             Initialize();
         }
 
         /// <summary>
-        /// Deserialization constructor. It is assumed that the serialization info provided contains
-        /// valid data.
+        /// 反序列化构造函数。 假定提供的序列化信息包含有效数据。
         /// </summary>
         /// <param name="info">
-        /// The serialization info to deserialize and obtain values
+        /// 序列化信息以反序列化和获取值
         /// </param>
         /// <param name="context">
-        /// Serialization context
+        /// 序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public Network(SerializationInfo info, StreamingContext context)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(info, "info");
 
             this.inputLayer = info.GetValue("inputLayer", typeof(ILayer)) as ILayer;
@@ -345,23 +331,23 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Populates the serialization info with the data necessary to serialize the network.
+        /// 使用序列化网络所需的数据填充序列化信息。
         /// </summary>
         /// <param name="info">
-        /// The info to populate serialization data with
+        /// 填充序列化数据的信息
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(info, "info");
 
-            // Populate data
+            // 填充数据
             info.AddValue("inputLayer", inputLayer, typeof(ILayer));
             info.AddValue("outputLayer", outputLayer, typeof(ILayer));
             info.AddValue("layers", layers, typeof(IList<ILayer>));
@@ -372,13 +358,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Invokes BeginEpochEvent
+        /// 调用BeginEpochEvent
         /// </summary>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingSet">
-        /// Training set which is about to be trained
+        /// 训练集即将被训练
         /// </param>
         protected virtual void OnBeginEpoch(int currentIteration, TrainingSet trainingSet)
         {
@@ -389,13 +375,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Invokes EndEpochEvent
+        /// 调用EndEpochEvent
         /// </summary>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingSet">
-        /// Training set which got trained successfully this epoch
+        /// 训练集成功训练了这个时代
         /// </param>
         protected virtual void OnEndEpoch(int currentIteration, TrainingSet trainingSet)
         {
@@ -406,13 +392,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Invokes BeginSampleEvent
+        /// 调用BeginSampleEvent
         /// </summary>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="currentSample">
-        /// Current sample which is about to be trained
+        /// 当前样品即将被训练
         /// </param>
         protected virtual void OnBeginSample(int currentIteration, TrainingSample currentSample)
         {
@@ -423,13 +409,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Invokes BeginSampleEvent
+        /// 调用BeginSampleEvent
         /// </summary>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="currentSample">
-        /// Current sample which got trained successfully
+        /// 当前样品已成功训练
         /// </param>
         protected virtual void OnEndSample(int currentIteration, TrainingSample currentSample)
         {
@@ -440,11 +426,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Sets the learning rate to the given value. All layers in the network will use this constant
-        /// value as learning rate during the learning process.
+        /// 将学习速率设置为给定值。 网络中的所有层将在学习过程中使用该恒定值作为学习速率。...
         /// </summary>
         /// <param name="learningRate">
-        /// The learning rate
+        /// 学习率
         /// </param>
         public void SetLearningRate(double learningRate)
         {
@@ -455,15 +440,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Sets the initial and final values for learning rate. During the learning process, all
-        /// layers in the network will use an efeective learning rate which varies uniformly from
-        /// the initial value to the final value.
+        /// 设置学习率的初始值和最终值。 在学习过程中，所有网络中的层将使用从一致地变化的有效学习速率将初始值转换为最终值。
         /// </summary>
         /// <param name="initialLearningRate">
-        /// Initial value of learning rate
+        /// 学习率的初始值
         /// </param>
         /// <param name="finalLearningRate">
-        /// Final value of learning rate
+        /// 学习率的最终值
         /// </param>
         public void SetLearningRate(double initialLearningRate, double finalLearningRate)
         {
@@ -474,17 +457,17 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Sets the learning rate function.
+        /// 设置学习速率函数。
         /// </summary>
         /// <param name="learningRateFunction">
-        /// Learning rate function to use.
+        /// 学习率函数使用。
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>learningRateFunction</c> is <c>null</c>
+        /// 如果<c> learningRateFunction </ c>是<c> null </ c>
         /// </exception>
         public void SetLearningRate(ILearningRateFunction learningRateFunction)
         {
-            // Validation is delegated
+            // 验证被委派
             for (int i = 0; i < layers.Count; i++)
             {
                 layers[i].SetLearningRate(learningRateFunction);
@@ -492,7 +475,7 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Initializes all layers and connectors and makes them ready to undergo fresh training.
+        /// 初始化所有层和连接器，使他们准备接受新的培训。
         /// </summary>
         public virtual void Initialize()
         {

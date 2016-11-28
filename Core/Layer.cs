@@ -25,44 +25,42 @@ using NeuronDotNet.Core.LearningRateFunctions;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// Layer is an abstract container for similar neurons. No two neurons within a layer can be
-    /// connected to each other.
+    /// 层是类似神经元的抽象容器。 一层内没有两个神经元可以相互连接。
     /// </summary>
-    /// <typeparam name="TNeuron">Type of Neurons in the layer</typeparam>
+    /// <typeparam name="TNeuron">图层中的神经元类型</typeparam>
     [Serializable]
     public abstract class Layer<TNeuron> : ILayer where TNeuron : INeuron
     {
         /// <summary>
-        /// Array of neurons in the layer. This is never <c>null</c>.
+        /// 图层中的神经元数组。 这从不为空。
         /// </summary>
         protected readonly TNeuron[] neurons;
 
         /// <summary>
-        /// List of source connectors. This read-only value is never <c>null</c>.
+        /// 源连接器列表。 此只读值从不为空。
         /// </summary>
         protected readonly List<IConnector> sourceConnectors = new List<IConnector>();
 
         /// <summary>
-        /// List of target connectors. This read-only value is never <c>null</c>.
+        /// 目标连接器列表。 此只读值从不为空。
         /// </summary>
         protected readonly List<IConnector> targetConnectors = new List<IConnector>();
 
         /// <summary>
-        /// Learning Rate Function
+        /// 学习速率函数
         /// </summary>
         protected ILearningRateFunction learningRateFunction;
 
         /// <summary>
-        /// Initializer used to initialize the layer. If this value is <c>null</c>, neurons will have
-        /// default values for initializable parameters (usually zero)
+        /// 初始化用于初始化图层。 如果这个值为null，神经元将有可初始化参数的默认值（通常为零）
         /// </summary>
         protected IInitializer initializer = null;
 
         /// <summary>
-        /// Gets the neuron count
+        /// 获得神经元计数
         /// </summary>
         /// <value>
-        /// Number of neurons in the layer. It is always positive.
+        /// 图层中的神经元数量。 它始终是正的。
         /// </value>
         public int NeuronCount
         {
@@ -70,10 +68,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Exposes an enumerator to iterate over all neurons in the layer
+        /// 显示枚举器以迭代层中的所有神经元
         /// </summary>
         /// <value>
-        /// Neurons Enumerator. No neuron enumerated can be <c>null</c>.
+        /// 神经元枚举。 没有枚举的神经元可以为null。
         /// </value>
         public IEnumerable<TNeuron> Neurons
         {
@@ -87,16 +85,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Neuron Indexer
+        /// 神经元索引
         /// </summary>
         /// <param name="index">
-        /// Index
+        /// 索引
         /// </param>
         /// <returns>
-        /// Neuron at the given index
+        /// 指定位置的索引
         /// </returns>
         /// <exception cref="IndexOutOfRangeException">
-        /// If index is out of range
+        /// 如果索引超出范围
         /// </exception>
         public TNeuron this[int index]
         {
@@ -120,11 +118,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the list of source connectors
+        /// 获取源连接器列表
         /// </summary>
         /// <value>
-        /// The list of source connectors associated with this layer. It is neither <c>null</c>,
-        /// nor contains <c>null</c> elements.
+        /// 与此图层关联的源连接器列表。 它既不为null，也不包含空元素。
         /// </value>
         public IList<IConnector> SourceConnectors
         {
@@ -132,11 +129,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the list of target connectors
+        /// 获取目标连接器的列表
         /// </summary>
         /// <value>
-        /// The list of target connectors associated with this layer. It is neither <c>null</c>,
-        /// nor contains <c>null</c> elements.
+        /// 与此图层关联的目标连接器的列表。 它既不为null，也不包含空元素。
         /// </value>
         public IList<IConnector> TargetConnectors
         {
@@ -144,11 +140,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets or sets the Initializer used to initialize the layer
+        /// 获取或设置用于初始化图层的初始化程序
         /// </summary>
         /// <value>
-        /// Initializer used to initialize the layer. If this value is <c>null</c>, initialization
-        /// is NOT performed.
+        /// 初始化用于初始化图层。 如果此值为null，则不执行初始化。
         /// </value>
         public IInitializer Initializer
         {
@@ -157,10 +152,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the initial value of learning rate
+        /// 获取学习率的初始值
         /// </summary>
         /// <value>
-        /// Initial value of learning rate.
+        /// 学习率的初始值。
         /// </value>
         public double LearningRate
         {
@@ -168,10 +163,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the learning rate function
+        /// 获取学习速率函数
         /// </summary>
         /// <value>
-        /// Learning Rate Function used while training. It is never <c>null</c>
+        /// 学习率训练时使用的函数。 它永远不会为空
         /// </value>
         public ILearningRateFunction LearningRateFunction
         {
@@ -179,40 +174,40 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Creates a new layer
+        /// 创建新图层
         /// </summary>
         /// <param name="neuronCount">
-        /// Number of neurons in the layer
+        /// 图层中的神经元数量
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If <c>neuronCount</c> is not positive
+        /// 如果神经元计数不为正
         /// </exception>
         protected Layer(int neuronCount)
         {
             Helper.ValidatePositive(neuronCount, "neuronCount");
-            
+
             this.neurons = new TNeuron[neuronCount];
             this.learningRateFunction = new LinearFunction(0.3d, 0.05d);
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果info为null
         /// </exception>
         protected Layer(SerializationInfo info, StreamingContext context)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(info, "info");
 
-            // Deserialize
+            // 反序列化
             int neuronCount = info.GetInt32("neuronCount");
             this.neurons = new TNeuron[neuronCount];
 
@@ -221,43 +216,43 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the layer
+        /// 使用序列化图层所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果info为null
         /// </exception>
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(info, "info");
 
-            // Populate
+            // 填充
             info.AddValue("neuronCount", neurons.Length);
             info.AddValue("initializer", initializer, typeof(IInitializer));
             info.AddValue("learningRateFunction", learningRateFunction, typeof(ILearningRateFunction));
         }
 
         /// <summary>
-        /// Sets neuron inputs to the values specified by the given array
+        /// 将神经元输入设置为给定数组指定的值
         /// </summary>
         /// <param name="input">
-        /// the input array
+        /// 输入数组
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>input</c> is <c>null</c>
+        /// 如果输入为null
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If length of <c>input</c> array is different from number of neurons
+        /// 如果输入数组的长度不同于神经元数量
         /// </exception>
         public virtual void SetInput(double[] input)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(input, "input");
 
             if (neurons.Length != input.Length)
@@ -265,7 +260,7 @@ namespace NeuronDotNet.Core
                 throw new ArgumentException("Length of input array should be same as neuron count", "input");
             }
 
-            // Bind inputs
+            // 绑定输入
             for (int i = 0; i < neurons.Length; i++)
             {
                 neurons[i].Input = input[i];
@@ -273,10 +268,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the neuron outputs as an array
+        /// 获取神经元输出作为数组
         /// </summary>
         /// <returns>
-        /// An Array of double values representing neuron outputs
+        /// 表示神经元输出的双值数组
         /// </returns>
         public virtual double[] GetOutput()
         {
@@ -289,11 +284,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Sets the learning rate to the given value. The layer will use this constant value
-        /// as learning rate throughout the learning process
+        /// 将学习速率设置为给定值。 该层将在整个学习过程中使用该常数值作为学习速率
         /// </summary>
         /// <param name="learningRate">
-        /// The learning rate
+        /// 学习率
         /// </param>
         public void SetLearningRate(double learningRate)
         {
@@ -301,14 +295,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Sets the initial and final values for learning rate. During the learning process, the
-        /// effective learning rate uniformly changes from its initial value to final value
+        /// 设置学习率的初始值和最终值。 在学习过程中，有效学习率从初始值均匀地变化到最终值
         /// </summary>
         /// <param name="initialLearningRate">
-        /// Initial value of learning rate
+        /// 学习率的初始值
         /// </param>
         /// <param name="finalLearningRate">
-        /// Final value of learning rate
+        /// 学习率的最终值
         /// </param>
         public void SetLearningRate(double initialLearningRate, double finalLearningRate)
         {
@@ -316,13 +309,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Sets the learning rate function.
+        /// 设置学习速率函数。
         /// </summary>
         /// <param name="learningRateFunction">
-        /// Learning rate function to use.
+        /// 学习率函数使用。
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If <c>learningRateFunction</c> is <c>null</c>
+        /// 如果学习速率函数为null
         /// </exception>
         public void SetLearningRate(ILearningRateFunction learningRateFunction)
         {
@@ -331,12 +324,12 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Initializes all neurons and makes them ready to undergo training freshly.
+        /// 初始化所有神经元，使他们准备好接受新训练。
         /// </summary>
         public abstract void Initialize();
 
         /// <summary>
-        /// Runs all neurons in the layer.
+        /// 运行图层中的所有神经元。
         /// </summary>
         public virtual void Run()
         {
@@ -347,24 +340,23 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// All neurons and their are source connectors are allowed to learn. This method assumes a
-        /// learning environment where inputs, outputs and other parameters (if any) are appropriate.
+        /// 允许所有神经元及其源连接器学习。 该方法假定一个学习环境，其中输入，输出和其他参数（如果有的话）是适当的。
         /// </summary>
         /// <param name="currentIteration">
-        /// Current learning iteration
+        /// 当前学习迭代
         /// </param>
         /// <param name="trainingEpochs">
-        /// Total number of training epochs
+        /// 训练时期的总数
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If <c>trainingEpochs</c> is zero or negative
+        /// 如果训练次数为零或负值
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// If <c>currentIteration</c> is negative or, if it is greater than <c>trainingEpochs</c>
+        /// 如果当前迭代为负，或者如果它大于训练总数
         /// </exception>
         public virtual void Learn(int currentIteration, int trainingEpochs)
         {
-            // Validation delegated
+            // 验证委托
             double effectiveRate = learningRateFunction.GetLearningRate(currentIteration, trainingEpochs);
             for (int i = 0; i < neurons.Length; i++)
             {
