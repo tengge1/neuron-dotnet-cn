@@ -23,7 +23,7 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core.Backpropagation
 {
     /// <summary>
-    /// Activation Layer is a layer of activation neurons.
+    /// 活动层是一层活动神经元。
     /// </summary>
     [Serializable]
     public abstract class ActivationLayer : Layer<ActivationNeuron>
@@ -31,10 +31,10 @@ namespace NeuronDotNet.Core.Backpropagation
         internal bool useFixedBiasValues = false;
 
         /// <summary>
-        /// Gets or sets a boolean representing whether to use fixed neuron bias values
+        /// 获取或设置表示是否使用固定神经元偏差值的布尔值
         /// </summary>
         /// <value>
-        /// A boolean indicating whether bias values of activation neurons learn while training.
+        /// 一个布尔值，表示激活神经元的偏差值是否在训练时学习。
         /// </value>
         public bool UseFixedBiasValues
         {
@@ -43,13 +43,13 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Constructs an instance of activation Layer
+        /// 构造激活层的实例
         /// </summary>
         /// <param name="neuronCount">
-        /// The number of neurons in the layer
+        /// 图层中的神经元数量
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If <c>neuronCount</c> is zero or negative
+        /// 如果<c> neuronCount </ c>为零或负数
         /// </exception>
         protected ActivationLayer(int neuronCount)
             : base(neuronCount)
@@ -61,16 +61,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public ActivationLayer(SerializationInfo info, StreamingContext context) 
             : base(info, context)
@@ -86,16 +86,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the layer
+        /// 使用序列化图层所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -113,7 +113,7 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Initializes all neurons and makes them ready to undergo training freshly.
+        /// 初始化所有神经元，使他们准备好接受新鲜训练。
         /// </summary>
         public override void Initialize()
         {

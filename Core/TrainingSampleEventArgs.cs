@@ -22,19 +22,18 @@ using System;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// Training Sample Event Handler. This is used by events associated with training samples.
+    /// 训练样本事件处理程序。 这由与训练样本相关联的事件使用。
     /// </summary>
     /// <param name="sender">
-    /// The sender invoking the event
+    /// 发件人调用事件
     /// </param>
     /// <param name="e">
-    /// Event Arguments
+    /// 事件参数
     /// </param>
     public delegate void TrainingSampleEventHandler(object sender, TrainingSampleEventArgs e);
 
     /// <summary>
-    /// Training Sample Event Arguments. This class represents arguments for an event associated
-    /// with a training sample
+    /// 训练样本事件参数。 此类表示与训练样本关联的事件的参数
     /// </summary>
     public class TrainingSampleEventArgs : EventArgs
     {
@@ -42,10 +41,10 @@ namespace NeuronDotNet.Core
         private TrainingSample trainingSample;
 
         /// <summary>
-        /// Gets the current training iteration
+        /// 获取当前的训练迭代
         /// </summary>
         /// <value>
-        /// Current Training Iteration.
+        /// 当前训练迭代。
         /// </value>
         public int TrainingIteration
         {
@@ -53,10 +52,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the training sample associated with the event
+        /// 获取与事件关联的训练样本
         /// </summary>
         /// <value>
-        /// Training sample associated with the event
+        /// 与事件相关的训练样本
         /// </value>
         public TrainingSample TrainingSample
         {
@@ -64,13 +63,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Creates a new instance of this class
+        /// 创建此类的新实例
         /// </summary>
         /// <param name="trainingIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingSample">
-        /// The training sample associated with the event
+        /// 与事件相关联的训练样本
         /// </param>
         public TrainingSampleEventArgs(int trainingIteration, TrainingSample trainingSample)
         {

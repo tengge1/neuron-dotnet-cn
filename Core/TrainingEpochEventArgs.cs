@@ -22,19 +22,18 @@ using System;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// Training Epoch Event Handler. This delegate handles events invoked whenever a training epoch
-    /// starts or ends
+    /// 训练时期事件处理程序。 此代理处理在训练时期开始或结束时调用的事件
     /// </summary>
     /// <param name="sender">
-    /// The sender invoking the event
+    /// 发件人调用事件
     /// </param>
     /// <param name="e">
-    /// Event Arguments
+    /// 事件参数
     /// </param>
     public delegate void TrainingEpochEventHandler(object sender, TrainingEpochEventArgs e);
 
     /// <summary>
-    /// Training Epoch Event Arguments
+    /// 训练时期事件参数
     /// </summary>
     public class TrainingEpochEventArgs : EventArgs
     {
@@ -42,10 +41,10 @@ namespace NeuronDotNet.Core
         private TrainingSet trainingSet;
 
         /// <summary>
-        /// Gets the current training iteration
+        /// 获取当前的训练迭代
         /// </summary>
         /// <value>
-        /// Current Training Iteration.
+        /// 当前训练迭代。
         /// </value>
         public int TrainingIteration
         {
@@ -53,10 +52,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the training set associated
+        /// 获取与训练集相关联
         /// </summary>
         /// <value>
-        /// Training set associated with the event
+        /// 与事件相关的训练集
         /// </value>
         public TrainingSet TrainingSet
         {
@@ -64,13 +63,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Creates a new instance of training epoch event arguments
+        /// 创建训练时期事件参数的新实例
         /// </summary>
         /// <param name="trainingIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingSet">
-        /// The training set associated with the event
+        /// 与事件相关联的训练集
         /// </param>
         public TrainingEpochEventArgs(int trainingIteration, TrainingSet trainingSet)
         {

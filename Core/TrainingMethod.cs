@@ -20,17 +20,17 @@
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// Method of training used to train the network
+    /// 用于训练网络的训练方法
     /// </summary>
     public enum TrainingMethod
     {
         /// <summary>
-        /// Supervised training method.
+        /// 监督训练方法。
         /// </summary>
         Supervised = 0,
 
         /// <summary>
-        /// Unsupervised training method.
+        /// 无监督训练方法。
         /// </summary>
         Unsupervised = 1
     }

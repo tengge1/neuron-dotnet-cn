@@ -34,10 +34,10 @@ namespace NeuronDotNet.Core
         private readonly IList<TrainingSample> trainingSamples;
 
         /// <summary>
-        /// Gets the number of training samples in the set
+        /// 获取集合中的训练样本数
         /// </summary>
         /// <value>
-        /// Number of training samples in the set. This value is never negative.
+        /// 集合中的训练样本数。 此值从不为负。
         /// </value>
         public int TrainingSampleCount
         {
@@ -45,11 +45,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the length of input vector. 
+        /// 获取输入向量的长度。
         /// </summary>
         /// <value>
-        /// Input Vector Length. This is always positive and is equal to the number of input neurons
-        /// in the network to be trained.
+        /// 输入矢量长度。 这总是正的，并且等于要训练的网络中的输入神经元的数量。
         /// </value>
         public int InputVectorLength
         {
@@ -57,12 +56,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the length of expected output vector.
+        /// 获取预期输出向量的长度。
         /// </summary>
         /// <value>
-        /// Output Vector Length. This value is zero for unsupervised training sets. For a supervised
-        /// training set, this value is positive and is equal to the number of output neurons in the
-        /// network.
+        /// 输出矢量长度。 对于无人监督的训练集，该值为零。 对于监督训练集，该值是正的，并且等于网络中的输出神经元的数量。
         /// </value>
         public int OutputVectorLength
         {
@@ -70,10 +67,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Exposes an Enumerator to iterator over training samples in the set. 
+        /// 在集合中的训练样本上展示一个枚举器到迭代器。
         /// </summary>
         /// <value>
-        /// Training Samples Enumerator. No training sample returned is <c>null</c>.
+        /// 训练样本枚举器。 没有返回的训练样本为<c> null </ c>。
         /// </value>
         public IEnumerable<TrainingSample> TrainingSamples
         {
@@ -87,16 +84,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Training Sample Indexer
+        /// 训练样本索引器
         /// </summary>
         /// <param name="index">
-        /// Training sample index
+        /// 训练样本索引
         /// </param>
         /// <returns>
-        /// Training sample at the given index
+        /// 在给定索引处训练样本
         /// </returns>
         /// <exception cref="IndexOutOfRangeException">
-        /// If the index is out of range
+        /// 如果索引超出范围
         /// </exception>
         public TrainingSample this[int index]
         {
@@ -104,14 +101,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Creates a new unsupervised training set
+        /// 创建一个新的无监督训练集
         /// </summary>
         /// <param name="vectorSize">
-        /// Expected size of the vectors in the training set.
-        /// (Note : This should be equal to number of input neurons.)
+        /// 训练集中向量的预期大小（注意：这应等于输入神经元的数量。）
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If vectorSize is zero or negative
+        /// 如果vectorSize为零或负数
         /// </exception>
         public TrainingSet(int vectorSize)
             : this(vectorSize, 0)
@@ -119,40 +115,40 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Creates a new supervised training set
+        /// 创建一个新的监督训练集
         /// </summary>
         /// <param name="inputVectorLength">
-        /// Length of input vector
+        /// 输入矢量的长度
         /// </param>
         /// <param name="outputVectorLength">
-        /// Length of expected output vector (zero for unsupervised training)
+        /// 预期输出向量的长度（无监督训练为零）
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If input vector length is zero or negative, or if output vector length is negative
+        /// 如果输入向量长度为零或负数，或输出向量长度为负数
         /// </exception>
         public TrainingSet(int inputVectorLength, int outputVectorLength)
         {
-            // Validation
+            // 验证
             Helper.ValidatePositive(inputVectorLength, "inputVectorLength");
             Helper.ValidateNotNegative(outputVectorLength, "outputVectorLength");
 
-            // Initialize instance variables
+            // 初始化实例变量
             this.inputVectorLength = inputVectorLength;
             this.outputVectorLength = outputVectorLength;
             this.trainingSamples = new List<TrainingSample>();
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public TrainingSet(SerializationInfo info, StreamingContext context)
         {
@@ -164,16 +160,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the training set
+        /// 用序列化训练集所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -185,21 +181,20 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Adds a new supervised training sample to the training set. If already exists, it will
-        /// be replaced.
+        /// 向训练集添加新的监督训练样本。 如果已经存在，它将被替换。
         /// </summary>
         /// <param name="sample">
-        /// The sample to add
+        /// 要添加的示例
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>sample</c> is <c>null</c>
+        /// 如果<c> sample </ c>为<c> null </ c>
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If sizes of input vector or output vector are different from their expected sizes
+        /// 如果输入向量或输出向量的大小与其预期大小不同
         /// </exception>
         public void Add(TrainingSample sample)
         {
-            // Validation
+            // 验证
             Helper.ValidateNotNull(sample, "sample");
             if (sample.InputVector.Length != inputVectorLength)
             {
@@ -212,21 +207,21 @@ namespace NeuronDotNet.Core
                     ("Output vector must be of size " + outputVectorLength, "sample");
             }
 
-            // Note that the reference is being added. (Sample is immutable)
+            // 请注意，正在添加引用。 （样本是不可变的）
             trainingSamples.Add(sample);
         }
 
         /// <summary>
-        /// Removes the training sample corresponding to the given vector
+        /// 去除对应于给定向量的训练样本
         /// </summary>
         /// <param name="inputVector">
-        /// The input vector of the sample to remove
+        /// 要删除的样本的输入向量
         /// </param>
         /// <returns>
-        /// <c>true</c> if successful, <c>false</c> otherwise
+        /// <c> true </ c>如果成功，<c> false </ c>
         /// </returns>
         /// <exception cref="ArgumentNullException">
-        /// If input vector is <c>null</c>
+        /// 如果输入向量<c> null </ c>
         /// </exception>
         public bool Remove(double[] inputVector)
         {
@@ -234,13 +229,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Removes the given training sample
+        /// 删除给定的训练样本
         /// </summary>
         /// <param name="sample">
-        /// The sample to remove
+        /// 要除去的样品
         /// </param>
         /// <returns>
-        /// <c>true</c> if successful, <c>false</c> otherwise
+        /// <c> true </ c>如果成功，<c> false </ c>
         /// </returns>
         public bool Remove(TrainingSample sample)
         {
@@ -248,17 +243,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Determines whether the training set contains a training sample corresponding to given
-        /// vector
+        /// 确定训练集合是否包含对应于给定向量的训练样本
         /// </summary>
         /// <param name="inputVector">
-        /// The input vector of the sample to locate
+        /// 要定位的样本的输入向量
         /// </param>
         /// <returns>
-        /// <c>true</c> if present, <c>false</c> otherwise
+        /// <c> true </ c>如果存在，<c> false </ c>
         /// </returns>
         /// <exception cref="ArgumentNullException">
-        /// If input vector is <c>null</c>
+        /// 如果输入向量<c> null </ c>
         /// </exception>
         public bool Contains(double[] inputVector)
         {
@@ -266,13 +260,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Determines whether the training sample is present in the set
+        /// 确定训练样本是否存在于集合中
         /// </summary>
         /// <param name="sample">
-        /// The sample to locate
+        /// 要定位的示例
         /// </param>
         /// <returns>
-        /// <c>true</c> if present, <c>false</c> otherwise
+        /// <c> true </ c>如果存在，<c> false </ c>
         /// </returns>
         public bool Contains(TrainingSample sample)
         {
@@ -280,7 +274,7 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Removes all training samples in the training set.
+        /// 删除训练集中的所有训练样本。
         /// </summary>
         public void Clear()
         {

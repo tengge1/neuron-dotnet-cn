@@ -146,7 +146,7 @@ namespace NeuronDotNet.Core
         {
             get
             {
-                for(int i = 0; i < layers.Count; i++)
+                for (int i = 0; i < layers.Count; i++)
                 {
                     yield return layers[i];
                 }
@@ -490,20 +490,20 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Runs the neural network against the given input
+        /// 针对给定的输入运行神经网络
         /// </summary>
         /// <param name="input">
-        /// Input to the network
+        /// 输入到网络
         /// </param>
         /// <returns>
-        /// The output of the network
+        /// 网络的输出
         /// </returns>
         /// <exception cref="ArgumentNullException">
-        /// If <c>input</c> is <c>null</c>
+        /// 如果<c>输入</ c>为<c> null </ c>
         /// </exception>
         public virtual double[] Run(double[] input)
         {
-            // Validation is delegated
+            // 验证被委托
             inputLayer.SetInput(input);
             for (int i = 0; i < layers.Count; i++)
             {
@@ -513,24 +513,23 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Trains the neural network for the given training set (Batch Training)
+        /// 训练给定训练集的神经网络（批处理训练）
         /// </summary>
         /// <param name="trainingSet">
-        /// The training set to use
+        /// 使用的训练集
         /// </param>
         /// <param name="trainingEpochs">
-        /// Number of training epochs. (All samples are trained in some random order, in every
-        /// training epoch)
+        /// 训练时期数。 （所有样本在每个训练时期以一些随机顺序训练）
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// if <c>trainingSet</c> is <c>null</c>
+        /// 如果<c> trainingSet </ c>是<c> null </ c>
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// if <c>trainingEpochs</c> is zero or negative
+        /// 如果<c> trainingEpochs </ c>为零或负值
         /// </exception>
         public virtual void Learn(TrainingSet trainingSet, int trainingEpochs)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(trainingSet, "trainingSet");
             Helper.ValidatePositive(trainingEpochs, "trainingEpochs");
             if ((trainingSet.InputVectorLength != inputLayer.NeuronCount)
@@ -540,18 +539,18 @@ namespace NeuronDotNet.Core
                 throw new ArgumentException("Invalid training set");
             }
 
-            // Reset isStopping
+            // 重置isStopping
             isStopping = false;
 
-            // Re-Initialize the network
+            // 重新初始化网络
             Initialize();
             for (int currentIteration = 0; currentIteration < trainingEpochs; currentIteration++)
             {
                 int[] randomOrder = Helper.GetRandomOrder(trainingSet.TrainingSampleCount);
-                // Beginning a new training epoch
+                // 开始新的训练时期
                 OnBeginEpoch(currentIteration, trainingSet);
 
-                // Check for Jitter Epoch
+                // 检查抖动时期
                 if (jitterEpoch > 0 && currentIteration % jitterEpoch == 0)
                 {
                     for (int i = 0; i < connectors.Count; i++)
@@ -563,45 +562,43 @@ namespace NeuronDotNet.Core
                 {
                     TrainingSample randomSample = trainingSet[randomOrder[index]];
 
-                    // Learn a random training sample
+                    // 学习随机训练样本
                     OnBeginSample(currentIteration, randomSample);
                     LearnSample(trainingSet[randomOrder[index]], currentIteration, trainingEpochs);
                     OnEndSample(currentIteration, randomSample);
 
-                    // Check if we need to stop
+                    // 检查我们是否需要停止
                     if (isStopping) { isStopping = false; return; }
                 }
 
-                // Training Epoch successfully complete
+                // 训练时期成功完成
                 OnEndEpoch(currentIteration, trainingSet);
 
-                // Check if we need to stop
+                // 检查我们是否需要停止
                 if (isStopping) { isStopping = false; return; }
             }
         }
 
         /// <summary>
-        /// Trains the network for the given training sample (Online training mode). Note that this
-        /// method trains the sample only once, irrespective of what current epoch is. The arguments
-        /// are just used to find out training progress and adjust parameters depending on it.
+        /// 训练给定训练样本的网络（在线训练模式）。 注意这个方法仅训练样本一次，而不管当前的时期是什么。 参数只是用来找出训练进度，并根据它调整参数。
         /// </summary>
         /// <param name="trainingSample">
-        /// Training sample to use
+        /// 培训样品使用
         /// </param>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingEpochs">
-        /// Number of training epochs
+        /// 训练时期数
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>trainingSample</c> is <c>null</c>
+        /// 如果<c> trainingSample </ c>为<c> null </ c>
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If <c>trainingEpochs</c> is not positive
+        /// 如果<c> trainingEpochs </ c>不为正
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// If <c>currentIteration</c> is negative or, if it is not less than <c>trainingEpochs</c>
+        /// 如果<c> currentIteration </ c>为负，或者如果它不小于<c> trainingEpochs </ c>
         /// </exception>
         public virtual void Learn(TrainingSample trainingSample, int currentIteration, int trainingEpochs)
         {
@@ -615,7 +612,7 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// If the network is currently learning, this method stops the learning.
+        /// 如果网络当前正在学习，则此方法停止学习。
         /// </summary>
         public void StopLearning()
         {
@@ -623,16 +620,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// A protected helper function used to train single learning sample
+        /// 一个受保护的帮助函数，用于训练单个学习样本
         /// </summary>
         /// <param name="trainingSample">
-        /// Training sample to use
+        /// 培训样品使用
         /// </param>
         /// <param name="currentIteration">
-        /// Current training epoch (Assumed to be positive and less than <c>trainingEpochs</c>)
+        /// 当前训练时期（假设为正且小于<c> trainingEpochs </ c>）
         /// </param>
         /// <param name="trainingEpochs">
-        /// Number of training epochs (Assumed to be positive)
+        /// 训练时期数（假定为正）
         /// </param>
         protected abstract void LearnSample(TrainingSample trainingSample, int currentIteration, int trainingEpochs);
     }

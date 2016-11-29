@@ -23,7 +23,7 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// This class represents a training sample used to train a neural network
+    /// 这个类表示用于训练神经网络的训练样本
     /// </summary>
     [Serializable]
     public class TrainingSample : ISerializable
@@ -35,10 +35,10 @@ namespace NeuronDotNet.Core
         private readonly int hashCode;
 
         /// <summary>
-        /// Gets the value of input vector.
+        /// 获取输入向量的值。
         /// </summary>
         /// <value>
-        /// Input vector. It is never <c>null</c>.
+        /// 输入向量。 它永远不会<c> null </ c>。
         /// </value>
         public double[] InputVector
         {
@@ -46,10 +46,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the value of expected output vector 
+        /// 获取预期输出向量的值
         /// </summary>
         /// <value>
-        /// Output Vector. It is never <c>null</c>.
+        /// 输出向量。 它永远不会<c> null </ c>。
         /// </value>
         public double[] OutputVector
         {
@@ -57,10 +57,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the value of input vector in normalized form
+        /// 以归一化形式获取输入向量的值
         /// </summary>
         /// <value>
-        /// Normalized Input Vector. It is never <c>null</c>.
+        /// 归一化输入向量。 它永远不会<c> null </ c>。
         /// </value>
         public double[] NormalizedInputVector
         {
@@ -68,10 +68,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Gets the value of output vector in normalized form.
+        /// 以归一化形式获取输出向量的值。
         /// </summary>
         /// <value>
-        /// Normalized Output Vector. It is never <c>null</c>.
+        /// 归一化输出向量。 它永远不会<c> null </ c>。
         /// </value>
         public double[] NormalizedOutputVector
         {
@@ -79,13 +79,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Creates a new unsupervised training sample
+        /// 创建一个新的无监督训练样本
         /// </summary>
         /// <param name="vector">
-        /// The vector representing the unsupervised training sample
+        /// 向量表示无监督训练样本
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If vector is <c>null</c>
+        /// 如果vector是<c> null </ c>
         /// </exception>
         public TrainingSample(double[] vector)
             : this(vector, new double[0])
@@ -93,34 +93,32 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Creates a new training sample. The arguments are cloned into the training sample. So
-        /// any modifications to the arguments will NOT be reflected in the training sample.
+        /// 创建新的训练样本。 参数被克隆到训练样本中。 因此，对参数的任何修改都不会反映在训练样本中。
         /// </summary>
         /// <param name="inputVector">
-        /// Input vector
+        /// 输入向量
         /// </param>
         /// <param name="outputVector">
-        /// Expected output vector
+        /// 预期输出向量
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If any of the arguments is <c>null</c>
+        /// 如果任何参数是<c> null </ c>
         /// </exception>
         public TrainingSample(double[] inputVector, double[] outputVector)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(inputVector, "inputVector");
             Helper.ValidateNotNull(outputVector, "outputVector");
 
-            // Clone and initialize
+            // 克隆并初始化
             this.inputVector = (double[])inputVector.Clone();
             this.outputVector = (double[])outputVector.Clone();
 
-            // Some neural networks require inputs in normalized form.
-            // As an optimization measure, we normalize and store training samples
+            // 一些神经网络需要归一化形式的输入。作为优化措施，我们规范和存储训练样本
             this.normalizedInputVector = Helper.Normalize(inputVector);
             this.normalizedOutputVector = Helper.Normalize(outputVector);
 
-            // Calculate the hash code
+            // 计算哈希码
             hashCode = 0;
             for (int i = 0; i < inputVector.Length; i++)
             {
@@ -129,16 +127,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public TrainingSample(SerializationInfo info, StreamingContext context)
         {
@@ -157,16 +155,16 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the training sample
+        /// 用串行化训练样本所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -177,13 +175,13 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Determine whether the given object is equal to this instance
+        /// 确定给定对象是否等于此实例
         /// </summary>
         /// <param name="obj">
-        /// The object to compare with this instance
+        /// 要与此实例进行比较的对象
         /// </param>
         /// <returns>
-        /// <c>true</c> if the given object is equal to this instance, <c>false</c> otherwise
+        /// <c> true </ c>如果给定对象等于此实例，则<c> false </ c>
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -207,10 +205,10 @@ namespace NeuronDotNet.Core
         }
 
         /// <summary>
-        /// Serves as a hash function for a particular type
+        /// 作为特定类型的哈希函数
         /// </summary>
         /// <returns>
-        /// The hash code for the current object
+        /// 当前对象的哈希码
         /// </returns>
         public override int GetHashCode()
         {
