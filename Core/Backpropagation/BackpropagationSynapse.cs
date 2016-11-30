@@ -20,8 +20,7 @@
 namespace NeuronDotNet.Core.Backpropagation
 {
     /// <summary>
-    /// Backpropagation synapse connects two activation neurons. A typical backpropagation network
-    /// contains thousands of such synapses.
+    /// 反向传播突触连接两个激活神经元。 典型的反向传播网络包含数千个这样的突触。
     /// </summary>
     public class BackpropagationSynapse : ISynapse
     {
@@ -32,10 +31,10 @@ namespace NeuronDotNet.Core.Backpropagation
         private readonly BackpropagationConnector parent;
 
         /// <summary>
-        /// Gets the source neuron
+        /// 获取源神经元
         /// </summary>
         /// <value>
-        /// The source neuron of the synapse. It is never <c>null</c>.
+        /// 突触的源神经元。 它永远不会<c> null </ c>。
         /// </value>
         public ActivationNeuron SourceNeuron
         {
@@ -43,7 +42,7 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Gets the target neuron
+        /// 获取目标神经元
         /// </summary>
         /// <value>
         /// The target neuron of the synapse. It is never <c>null</c>.

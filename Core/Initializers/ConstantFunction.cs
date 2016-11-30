@@ -25,7 +25,7 @@ using NeuronDotNet.Core.SOM;
 namespace NeuronDotNet.Core.Initializers
 {
     /// <summary>
-    /// An <see cref="IInitializer"/> using constant function
+    /// 一个<见cref =“IInitializer”/>使用常量函数
     /// </summary>
     [Serializable]
     public class ConstantFunction : IInitializer
@@ -33,10 +33,10 @@ namespace NeuronDotNet.Core.Initializers
         private readonly double constant;
 
         /// <summary>
-        /// Gets the initializer Constant
+        /// 获取初始化常量
         /// </summary>
         /// <value>
-        /// The constant with which each parameter (bias values and weights) is initialized
+        /// 初始化每个参数（偏置值和权重）的常数
         /// </value>
         public double Constant
         {
@@ -44,10 +44,10 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Creates a new constant function
+        /// 创建新的常数函数
         /// </summary>
         /// <param name="constant">
-        /// The constant to use
+        /// 常数使用
         /// </param>
         public ConstantFunction(double constant)
         {
@@ -55,16 +55,16 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public ConstantFunction(SerializationInfo info, StreamingContext context)
         {
@@ -73,16 +73,16 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the initializer
+        /// 用序列化初始化程序所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -109,13 +109,13 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Initializes weights of all backpropagation synapses in the backpropagation connector.
+        /// 初始化反向传播连接器中的所有反向传播突触的权重。
         /// </summary>
         /// <param name="connector">
-        /// The backpropagation connector to initialize.
+        /// 反向传播连接器初始化。
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>connector</c> is <c>null</c>
+        /// 如果<c>连接器</ c>为<c> null </ c>
         /// </exception>
         public void Initialize(BackpropagationConnector connector)
         {
@@ -127,13 +127,13 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Initializes weights of all spatial synapses in a Kohonen connector.
+        /// 初始化Kohonen连接器中所有空间突触的权重。
         /// </summary>
         /// <param name="connector">
-        /// The Kohonen connector to initialize.
+        /// Kohonen连接器初始化。
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>connector</c> is <c>null</c>
+        /// 如果<c>连接器</ c>为<c> null </ c>
         /// </exception>
         public void Initialize(KohonenConnector connector)
         {

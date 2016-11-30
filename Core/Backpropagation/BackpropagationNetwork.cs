@@ -23,7 +23,7 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core.Backpropagation
 {
     /// <summary>
-    /// This class extends a <see cref="Network"/> and represents a Backpropagation neural network.
+    /// 这个类扩展了一个<see cref =“Network”/>并且表示一个反向传播神经网络。
     /// </summary>
     [Serializable]
     public class BackpropagationNetwork : Network
@@ -32,10 +32,10 @@ namespace NeuronDotNet.Core.Backpropagation
         private bool isValidMSE;
 
         /// <summary>
-        /// Gets the value of mean squared error
+        /// 获取均方误差的值
         /// </summary>
         /// <value>
-        /// Mean squared value of error in current training epoch
+        /// 当前训练时期的误差的均方值
         /// </value>
         public double MeanSquaredError
         {
@@ -43,19 +43,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Creates a new Back Propagation Network, with the specified input and output layers. (You
-        /// are required to connect all layers using appropriate synapses, before using the constructor.
-        /// Any changes made to the structure of the network after its creation may lead to complete
-        /// malfunctioning)
+        /// 创建新的反向传播网络，具有指定的输入和输出层。 （在使用构造函数之前，您需要使用适当的突触来连接所有层。对网络结构创建后所做的任何更改都可能导致完全故障）
         /// </summary>
         /// <param name="inputLayer">
-        /// The input layer
+        /// 输入层
         /// </param>
         /// <param name="outputLayer">
-        /// The output layer
+        /// 输出层
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>inputLayer</c> or <c>outputLayer</c> is <c>null</c>
+        /// 如果<c> inputLayer </ c>或<c> outputLayer </ c>为<c> null </ c>
         /// </exception>
         public BackpropagationNetwork(ActivationLayer inputLayer, ActivationLayer outputLayer)
             : base(inputLayer, outputLayer, TrainingMethod.Supervised)
@@ -65,16 +62,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public BackpropagationNetwork(SerializationInfo info, StreamingContext context)
             : base(info, context)
@@ -83,27 +80,23 @@ namespace NeuronDotNet.Core.Backpropagation
 
         /// <summary>
         /// <para>
-        /// Trains the network for the given training sample (Online training mode). Note that this
-        /// method trains the sample only once irrespective of the values of <c>currentIteration</c>
-        /// and <c>trainingEpochs</c>. Those arguments are just used to adjust training parameters
-        /// which are dependent on training progress.
+        /// 训练给定训练样本的网络（在线训练模式）。 注意，该方法仅训练样本一次，而不考虑<c> currentIteration </ c>和<c> trainingEpochs </ c>的值。 这些参数仅仅用于调整取决于训练进度的训练参数。
         /// </para>
         /// </summary>
         /// <param name="trainingSample">
-        /// Training sample to use
+        /// 使用的训练样本
         /// </param>
         /// <param name="currentIteration">
-        /// Current training epoch
+        /// 当前训练时期
         /// </param>
         /// <param name="trainingEpochs">
-        /// Number of training epochs
+        /// 训练时期数
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>trainingSample</c> is <c>null</c>
+        /// 如果<c> trainingSample </ c>为<c> null </ c>
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If <c>trainingEpochs</c> is not positive, or if <c>currentIteration</c> is negative or if
-        /// <c>currentIteration</c> is less than <c>trainingEpochs</c>
+        /// 如果<c> trainingEpochs </ c>不为正，或者<c> currentIteration </ c>为负或if<c> currentIteration</ c> 小于<c> trainingEpochs</ c>
         /// </exception>
         public override void Learn(TrainingSample trainingSample, int currentIteration, int trainingEpochs)
         {
@@ -113,13 +106,13 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Invokes BeginEpochEvent
+        /// 调用BeginEpochEvent
         /// </summary>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingSet">
-        /// Training set which is about to be trained
+        /// 训练集即将被训练
         /// </param>
         protected override void OnBeginEpoch(int currentIteration, TrainingSet trainingSet)
         {
@@ -129,13 +122,13 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Invokes EndEpochEvent
+        /// 调用EndEpochEvent
         /// </summary>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingSet">
-        /// Training set which got trained successfully this epoch
+        /// 训练集成功训练了这个时代
         /// </param>
         protected override void OnEndEpoch(int currentIteration, TrainingSet trainingSet)
         {
@@ -145,23 +138,23 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// A protected helper function used to train single learning sample
+        /// 一个受保护的帮助函数，用于训练单个学习样本
         /// </summary>
         /// <param name="trainingSample">
-        /// Training sample to use
+        /// 使用的训练样本
         /// </param>
         /// <param name="currentIteration">
-        /// Current training epoch (Assumed to be positive and less than <c>trainingEpochs</c>)
+        /// 当前训练时期（假设为正且小于<c> trainingEpochs </ c>）
         /// </param>
         /// <param name="trainingEpochs">
-        /// Number of training epochs (Assumed to be positive)
+        /// 训练时期数（假定为正）
         /// </param>
         protected override void LearnSample(TrainingSample trainingSample, int currentIteration, int trainingEpochs)
         {
-            // No validation here
+            // 这里没有验证
             int layerCount = layers.Count;
 
-            // Set input vector
+            // 设置输入向量
             inputLayer.SetInput(trainingSample.InputVector);
 
             for (int i = 0; i < layerCount; i++)
@@ -169,11 +162,11 @@ namespace NeuronDotNet.Core.Backpropagation
                 layers[i].Run();
             }
 
-            // Set Errors
+            // 设置错误
             meanSquaredError += (outputLayer as ActivationLayer).SetErrors(trainingSample.OutputVector);
 
-            // Backpropagate errors
-            for (int i = layerCount; i > 0; )
+            // 反向传播错误
+            for (int i = layerCount; i > 0;)
             {
                 ActivationLayer layer = layers[--i] as ActivationLayer;
                 if (layer != null)
@@ -182,7 +175,7 @@ namespace NeuronDotNet.Core.Backpropagation
                 }
             }
 
-            // Optimize synapse weights and neuron bias values
+            // 优化突触权重和神经元偏差值
             for (int i = 0; i < layerCount; i++)
             {
                 layers[i].Learn(currentIteration, trainingEpochs);
