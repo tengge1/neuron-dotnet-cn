@@ -45,7 +45,7 @@ namespace NeuronDotNet.Core.Backpropagation
         /// 获取目标神经元
         /// </summary>
         /// <value>
-        /// The target neuron of the synapse. It is never <c>null</c>.
+        /// 突触的目标神经元。 它永远不会<c> null </ c>。
         /// </value>
         public ActivationNeuron TargetNeuron
         {
@@ -63,10 +63,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Gets or sets the weight of the synapse
+        /// 获取或设置突触的权重
         /// </summary>
         /// <value>
-        /// Weight of the synapse
+        /// 突触的权重
         /// </value>
         public double Weight
         {
@@ -75,10 +75,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Gets the parent connector
+        /// 获取父连接器
         /// </summary>
         /// <value>
-        /// Parent connector containing this synapse. It is never <c>null</c>.
+        /// 包含此突触的父连接器。 它永远不会<c> null </ c>。
         /// </value>
         public BackpropagationConnector Parent
         {
@@ -91,19 +91,19 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Creates a new Backpropagation Synapse connecting the given neurons
+        /// 创建一个新的反向传播突触连接给定的神经元
         /// </summary>
         /// <param name="sourceNeuron">
-        /// The source neuron
+        /// 源神经元
         /// </param>
         /// <param name="targetNeuron">
-        /// The target neuron
+        /// 目标神经元
         /// </param>
         /// <param name="parent">
-        /// Parent connector containing this syanpse
+        /// 包含此突触的父连接
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If any of the arguments is <c>null</c>.
+        /// 如果任何参数是<c> null </ c>。
         /// </exception>
         public BackpropagationSynapse(
             ActivationNeuron sourceNeuron, ActivationNeuron targetNeuron, BackpropagationConnector parent)
@@ -124,7 +124,7 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Propagates the information from source neuron to target neuron
+        /// 将信息从源神经元传播到目标神经元
         /// </summary>
         public void Propagate()
         {
@@ -132,10 +132,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Optimizes the weight using back propagation algorithm to minimize the error
+        /// 使用反向传播算法优化权重，以最小化误差
         /// </summary>
         /// <param name="learningFactor">
-        /// Effective learning factor (A function of learning rate, training progress and other parameters)
+        /// 有效学习因素（学习率，培训进度等参数的函数）
         /// </param>
         public void OptimizeWeight(double learningFactor)
         {
@@ -144,7 +144,7 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Back-propagates the error from target neuron to source neuron
+        /// 反向传播从目标神经元到源神经元的错误
         /// </summary>
         public void Backpropagate()
         {
@@ -152,16 +152,14 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Adds small random noise to weight of this synapse so that the network deviates from
-        /// its local optimum position (a local equilibrium state where further learning is of
-        /// no use)
+        /// 添加小随机噪声到这个突触的权重，以便网络偏离其局部最优位置（对进一步学习没用的局部平衡状态）
         /// </summary>
         /// <param name="jitterNoiseLimit">
-        /// Maximum absolute limit to the random noise added
+        /// 对随机噪声的最大绝对限制
         /// </param>
         public void Jitter(double jitterNoiseLimit)
         {
-            weight += Helper.GetRandom(-jitterNoiseLimit, jitterNoiseLimit) ;
+            weight += Helper.GetRandom(-jitterNoiseLimit, jitterNoiseLimit);
         }
     }
 }

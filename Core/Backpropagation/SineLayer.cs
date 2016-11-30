@@ -24,19 +24,19 @@ using NeuronDotNet.Core.Initializers;
 namespace NeuronDotNet.Core.Backpropagation
 {
     /// <summary>
-    /// An <see cref="ActivationLayer"/> using sine activation function
+    /// <see cref =“ActivationLayer”/>使用正弦激活函数
     /// </summary>
     [Serializable]
     public class SineLayer : ActivationLayer
     {
         /// <summary>
-        /// Constructs a new SineLayer containing specified number of neurons
+        /// 构造一个新的SineLayer包含指定数量的神经元
         /// </summary>
         /// <param name="neuronCount">
-        /// The number of neurons
+        /// 神经元的数量
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If <c>neuronCount</c> is zero or negative
+        /// 如果<c> neuronCount </ c>为零或负数
         /// </exception>
         public SineLayer(int neuronCount)
             : base(neuronCount)
@@ -45,16 +45,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Sine activation function
+        /// 正弦激活功能
         /// </summary>
         /// <param name="input">
-        /// Current input to the neuron
+        /// 电流输入到神经元
         /// </param>
         /// <param name="previousOutput">
-        /// The previous output at the neuron
+        /// 神经元上的先前输出
         /// </param>
         /// <returns>
-        /// The activated value
+        /// 激活的值
         /// </returns>
         public override double Activate(double input, double previousOutput)
         {
@@ -62,16 +62,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Derivative of sine function
+        /// 正弦函数的导数
         /// </summary>
         /// <param name="input">
-        /// Current input to the neuron
+        /// 电流输入到神经元
         /// </param>
         /// <param name="output">
-        /// Current output (activated) at the neuron
+        /// 电流输出（激活）在神经元
         /// </param>
         /// <returns>
-        /// The result of derivative of activation function
+        /// 激活函数的导数的结果
         /// </returns>
         public override double Derivative(double input, double output)
         {
@@ -79,16 +79,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Deserialization constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// The info to deserialize
+        /// 反序列化的信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public SineLayer(SerializationInfo info, StreamingContext context)
             : base(info, context)
