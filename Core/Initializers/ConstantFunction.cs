@@ -91,13 +91,13 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Initializes bias values of activation neurons in the activation layer.
+        /// 初始化激活层中激活神经元的偏置值。
         /// </summary>
         /// <param name="activationLayer">
-        /// The activation layer to initialize
+        /// 激活层初始化
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>activationLayer</c> is <c>null</c>
+        /// 如果<c> activationLayer </ c>为<c> null </ c>
         /// </exception>
         public void Initialize(ActivationLayer activationLayer)
         {

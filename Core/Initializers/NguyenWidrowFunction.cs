@@ -25,7 +25,7 @@ using NeuronDotNet.Core.SOM;
 namespace NeuronDotNet.Core.Initializers
 {
     /// <summary>
-    /// An <see cref="IInitializer"/> using Nguyen Widrow function.
+    /// 使用Nguyen Widrow函数的<see cref =“IInitializer”/>。
     /// </summary>
     [Serializable]
     public class NguyenWidrowFunction : IInitializer
@@ -33,10 +33,10 @@ namespace NeuronDotNet.Core.Initializers
         private readonly double outputRange;
 
         /// <summary>
-        /// Gets the output range
+        /// 获取输出范围
         /// </summary>
         /// <value>
-        /// The range of values, that network output takes
+        /// 网络输出所需的值范围
         /// </value>
         public double OutputRange
         {
@@ -44,7 +44,7 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Creates a new NGuyen Widrow Initialization function
+        /// 创建新的NGuyen Widrow初始化函数
         /// </summary>
         public NguyenWidrowFunction()
             : this(1d)
@@ -52,10 +52,10 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Creates a new NGuyen Widrow function using the given output range
+        /// 使用给定的输出范围创建新的NGuyen Widrow功能
         /// </summary>
         /// <param name="outputRange">
-        /// the range of values, that output of a neuron can take (i.e. maximum minus minimum)
+        /// 神经元的输出可以采用的值的范围（即，最大减去最小值）
         /// </param>
         public NguyenWidrowFunction(double outputRange)
         {
@@ -63,16 +63,16 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public NguyenWidrowFunction(SerializationInfo info, StreamingContext context)
         {
@@ -81,16 +81,16 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the initializer
+        /// 用序列化初始化程序所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
