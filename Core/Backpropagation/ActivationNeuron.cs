@@ -22,7 +22,7 @@ using System.Collections.Generic;
 namespace NeuronDotNet.Core.Backpropagation
 {
     /// <summary>
-    /// Activation Neuron is a buiding block of a back-propagation neural network.
+    /// 激活神经元是反向传播神经网络的构件。
     /// </summary>
     public class ActivationNeuron : INeuron
     {
@@ -40,8 +40,7 @@ namespace NeuronDotNet.Core.Backpropagation
         /// Gets or sets the neuron input.
         /// </summary>
         /// <value>
-        /// Input to the neuron. For input neurons, this value is specified by user, whereas other
-        /// neurons will have their inputs updated when the source synapses propagate
+        /// 输入到神经元。 对于输入神经元，该值由用户指定，而其他神经元将在源突触传播时更新其输入
         /// </value>
         public double Input
         {
@@ -50,10 +49,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Gets the output of the neuron.
+        /// 获取神经元的输出。
         /// </summary>
         /// <value>
-        /// Neuron Output
+        /// 神经元输出
         /// </value>
         public double Output
         {
@@ -61,10 +60,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Gets the neuron error
+        /// 获取神经元错误
         /// </summary>
         /// <value>
-        /// Neuron Error
+        /// 神经元错误
         /// </value>
         public double Error
         {
@@ -72,10 +71,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Gets the neuron bias
+        /// 获取神经元偏差
         /// </summary>
         /// <value>
-        /// The current value of neuron bias
+        /// 神经元偏差的当前值
         /// </value>
         public double Bias
         {
@@ -83,10 +82,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Gets the list of source synapses associated with this neuron
+        /// 获取与这个神经元相关的源突触的列表
         /// </summary>
         /// <value>
-        /// A list of source synapses. It can neither be <c>null</c>, nor contain <c>null</c> elements.
+        /// 源突触的列表。 它既不能<c> null </ c>，也不能包含<c> null </ c>元素。
         /// </value>
         public IList<ISynapse> SourceSynapses
         {
@@ -94,10 +93,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Gets the list of target synapses associated with this neuron
+        /// 获取与该神经元相关联的目标突触的列表
         /// </summary>
         /// <value>
-        /// A list of target synapses. It can neither be <c>null</c>, nor contains <c>null</c> elements.
+        /// 目标突触的列表。 它既不能是<c> null </ c>，也不能包含<c> null </ c>元素。
         /// </value>
         public IList<ISynapse> TargetSynapses
         {
@@ -105,10 +104,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Gets the parent layer containing this neuron
+        /// 获取包含此神经元的父层
         /// </summary>
         /// <value>
-        /// The parent layer containing this neuron. It is never <c>null</c>
+        /// 包含这个神经元的父层。 它永远不会<c> null </ c>
         /// </value>
         public ActivationLayer Parent
         {
@@ -121,13 +120,13 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Create a new activation neuron
+        /// 创建一个新的激活神经元
         /// </summary>
         /// <param name="parent">
-        /// The parent layer containing this neuron
+        /// 包含此神经元的父层
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If <c>parent</c> is <c>null</c>
+        /// 如果<c>父</ c>是<c> null </ c>
         /// </exception>
         public ActivationNeuron(ActivationLayer parent)
         {
@@ -141,7 +140,7 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Obtains input from source synapses and activates to update the output
+        /// 从源突触获取输入并激活以更新输出
         /// </summary>
         public void Run()
         {
@@ -157,7 +156,7 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Backpropagates the target synapses and evaluates the error
+        /// 反向传播目标突触和评估错误
         /// </summary>
         public void EvaluateError()
         {
@@ -173,11 +172,10 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Optimizes the bias value (if not <c>UseFixedBiasValues</c>) and the weights of all the
-        /// source synapses using back propagation algorithm
+        /// 使用反向传播算法优化偏差值（如果不是<c> UseFixedBiasValues </ c>）和所有源突触的权重
         /// </summary>
         /// <param name="learningRate">
-        /// The current learning rate (this depends on training progress as well)
+        /// 当前学习率（这取决于培训进度）
         /// </param>
         public void Learn(double learningRate)
         {

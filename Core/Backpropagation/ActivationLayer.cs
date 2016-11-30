@@ -72,7 +72,7 @@ namespace NeuronDotNet.Core.Backpropagation
         /// <exception cref="ArgumentNullException">
         /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
-        public ActivationLayer(SerializationInfo info, StreamingContext context) 
+        public ActivationLayer(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
             this.useFixedBiasValues = info.GetBoolean("useFixedBiasValues");
@@ -124,30 +124,30 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Sets neuron errors as the difference between actual and expected outputs
+        /// 将神经元误差设置为实际输出和预期输出之间的差
         /// </summary>
         /// <param name="expectedOutput">
-        /// Expected output vector
+        /// 预期输出向量
         /// </param>
         /// <returns>
-        /// Mean squared error
+        /// 均方误差
         /// </returns>
         /// <exception cref="ArgumentNullException">
-        /// If <c>expectedOutput</c> is <c>null</c>
+        /// 如果<c> expectedOutput </ c>为<c> null </ c>
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If length of <c>expectedOutput</c> is different from the number of neurons
+        /// 如果<c> expectedOutput </ c>的长度不同于神经元的数量
         /// </exception>
         public double SetErrors(double[] expectedOutput)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(expectedOutput, "expectedOutput");
             if (expectedOutput.Length != neurons.Length)
             {
                 throw new ArgumentException("Length of ouput array should be same as neuron count", "expectedOutput");
             }
 
-            // Set errors, evaluate mean squared error
+            // 设置错误，评估均方误差
             double meanSquaredError = 0d;
             for (int i = 0; i < neurons.Length; i++)
             {
@@ -158,7 +158,7 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Evaluate errors at all neurons in the layer
+        /// 评估层中所有神经元的误差
         /// </summary>
         public void EvaluateErrors()
         {
@@ -169,30 +169,30 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Activation function used by all neurons in this layer
+        /// 该层中的所有神经元使用的激活函数
         /// </summary>
         /// <param name="input">
-        /// Current input to the neuron
+        /// 电流输入到神经元
         /// </param>
         /// <param name="previousOutput">
-        /// The previous output at the neuron
+        /// 神经元上的先前输出
         /// </param>
         /// <returns>
-        /// The activated value
+        /// 激活的值
         /// </returns>
         public abstract double Activate(double input, double previousOutput);
 
         /// <summary>
-        /// Derivative function used by all neurons in this layer
+        /// 该层中所有神经元使用的导数函数
         /// </summary>
         /// <param name="input">
-        /// Current input to the neuron
+        /// 电流输入到神经元
         /// </param>
         /// <param name="output">
-        /// Current output (activated) at the neuron
+        /// 电流输出（激活）在神经元
         /// </param>
         /// <returns>
-        /// The result of derivative of activation function
+        /// 激活函数的导数的结果
         /// </returns>
         public abstract double Derivative(double input, double output);
     }

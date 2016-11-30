@@ -24,20 +24,19 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core.Backpropagation
 {
     /// <summary>
-    /// A Backpropagation Connector is an <see cref="IConnector"/> which consists of a collection of
-    /// backpropagation synapses connecting two activation layers.
+    /// 反向传播连接器是由连接两个激活层的反向传播突触的集合组成的<见cref =“IConnector”/>。
     /// </summary>
     [Serializable]
     public class BackpropagationConnector
-        : Connector<ActivationLayer, ActivationLayer,BackpropagationSynapse>
+        : Connector<ActivationLayer, ActivationLayer, BackpropagationSynapse>
     {
         internal double momentum = 0.07d;
 
         /// <summary>
-        /// Gets or sets the momentum (the tendency of synapses to retain their previous deltas)
+        /// 获取或设置动量（突触保留其先前变化量的趋势）
         /// </summary>
         /// <value>
-        /// The tendency of synapses to retain their previous weight change.
+        /// 突触保持其先前体重变化的趋势。
         /// </value>
         public double Momentum
         {
@@ -46,16 +45,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Creates a new complete backpropagation connector between given layers.
+        /// 在给定图层之间创建一个新的完整反向传播连接器。
         /// </summary>
         /// <param name="sourceLayer">
-        /// The source layer
+        /// 源层
         /// </param>
         /// <param name="targetLayer">
-        /// The target layer
+        /// 目标层
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>sourceLayer</c> or <c>targetLayer</c> is <c>null</c>
+        /// 如果<c> sourceLayer </ c>或<c> targetLayer </ c>为<c> null </ c>
         /// </exception>
         public BackpropagationConnector(ActivationLayer sourceLayer, ActivationLayer targetLayer)
             : this(sourceLayer, targetLayer, ConnectionMode.Complete)
@@ -63,20 +62,19 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Creates a new Backpropagation connector between the given layers using the specified
-        /// connection mode.
+        /// 使用指定的连接模式在给定图层之间创建新的反向传播连接器。
         /// </summary>
         /// <param name="sourceLayer">
-        /// The source layer
+        /// 源层
         /// </param>
         /// <param name="targetLayer">
-        /// The target layer
+        /// 目标层
         /// </param>
         /// <param name="connectionMode">
-        /// Connection mode to use
+        /// 要使用的连接模式
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>sourceLayer</c> or <c>targetLayer</c> is <c>null</c>
+        /// 如果<c> sourceLayer </ c>或<c> targetLayer </ c>为<c> null </ c>
         /// </exception>
         public BackpropagationConnector(ActivationLayer sourceLayer, ActivationLayer targetLayer, ConnectionMode connectionMode)
             : base(sourceLayer, targetLayer, connectionMode)
@@ -85,16 +83,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public BackpropagationConnector(SerializationInfo info, StreamingContext context)
             : base(info, context)
@@ -111,16 +109,16 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the connector
+        /// 使用序列化连接器所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -138,8 +136,7 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Initializes all synapses in the connector and makes them ready to undergo training
-        /// freshly. (Adjusts the weights of synapses using the initializer)
+        /// 初始化连接器中的所有突触，并使其准备好进行新训练。 （使用初始化器调整突触的权重）
         /// </summary>
         public override void Initialize()
         {
@@ -150,7 +147,7 @@ namespace NeuronDotNet.Core.Backpropagation
         }
 
         /// <summary>
-        /// Private helper to construct synapses between layers
+        /// 私有帮助函数构建层之间的突触
         /// </summary>
         private void ConstructSynapses()
         {
