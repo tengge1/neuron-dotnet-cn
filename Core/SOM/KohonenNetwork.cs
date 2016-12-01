@@ -23,16 +23,16 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core.SOM
 {
     /// <summary>
-    /// This class extends a <see cref="Network"/> and represents a Kohonen Self-Organizing Map.
+    /// 这个类扩展了一个<see cref =“Network”/>并代表Kohonen自组织地图。
     /// </summary>
     [Serializable]
     public class KohonenNetwork : Network
     {
         /// <summary>
-        /// Gets the winner neuron of the network
+        /// 获取网络的优胜者神经元
         /// </summary>
         /// <value>
-        /// Winner Neuron
+        /// 优胜者神经元
         /// </value>
         public PositionNeuron Winner
         {
@@ -40,19 +40,16 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates a new Kohonen SOM, with the specified input and output layers. (You are required
-        /// to connect all layers using appropriate synapses, before using the constructor. Any changes
-        /// made to the structure of the network here-after, may lead to complete malfunctioning of the
-        /// network)
+        ///创建一个新的Kohonen SOM，具有指定的输入和输出层。 （在使用构造函数之前，需要使用适当的突触来连接所有层）对网络结构进行的任何更改在此后可能导致网络完全故障）
         /// </summary>
         /// <param name="inputLayer">
-        /// The input layer
+        /// 输入层
         /// </param>
         /// <param name="outputLayer">
-        /// The output layer
+        /// 输出层
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>inputLayer</c> or <c>outputLayer</c> is <c>null</c>
+        /// 如果<c> inputLayer </ c>或<c> outputLayer </ c>为<c> null </ c>
         /// </exception>
         public KohonenNetwork(ILayer inputLayer, KohonenLayer outputLayer)
             : base(inputLayer, outputLayer, TrainingMethod.Unsupervised)
@@ -60,16 +57,16 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public KohonenNetwork(SerializationInfo info, StreamingContext context)
             : base(info, context)
@@ -77,20 +74,20 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// A protected helper function used to train single learning sample
+        /// 一个受保护的帮助函数，用于训练单个学习样本
         /// </summary>
         /// <param name="trainingSample">
-        /// Training sample to use
+        /// 培训样品使用
         /// </param>
         /// <param name="currentIteration">
-        /// Current training epoch (Assumed to be positive and less than <c>trainingEpochs</c>)
+        /// 当前训练时期（假设为正且小于<c> trainingEpochs </ c>）
         /// </param>
         /// <param name="trainingEpochs">
-        /// Number of training epochs (Assumed to be positive)
+        /// 训练时期数（假定为正）
         /// </param>
         protected override void LearnSample(TrainingSample trainingSample, int currentIteration, int trainingEpochs)
         {
-            // No validation here
+            // 这里没有验证
             inputLayer.SetInput(trainingSample.InputVector);
             foreach (ILayer layer in layers)
             {

@@ -20,11 +20,11 @@
 namespace NeuronDotNet.Core.SOM
 {
     /// <summary>
-    /// Lattice Topology of the position neurons in a Kohonen Layer
+    /// Kohonen图层中位置神经元的晶格拓扑
     /// </summary>
     public enum LatticeTopology
     {
-        // Arrangement of neurons in a rectangular lattice
+        // 矩形网格中神经元的排列
         //
         //            0 0 0 0 0 0
         //            0 0 0 * 0 0
@@ -32,16 +32,16 @@ namespace NeuronDotNet.Core.SOM
         //            0 0 0 * 0 0
         //            0 0 0 0 0 0
         //
-        // The four immediate neighbors of 'O' are shown as '*'
+        // 'O'的四个直接邻居被示为'*'
 
         /// <summary>
-        /// Each neuron has four immediate neighbors
+        /// 每个神经元有四个直接邻居
         /// </summary>
         Rectangular = 0,
 
 
 
-        // Arrangement of neurons in a hexagonal lattice
+        // 六角形网格中的神经元的排列
         //
         //            0 0 0 0 0
         //             0 0 * * 0
@@ -49,10 +49,10 @@ namespace NeuronDotNet.Core.SOM
         //             0 0 * * 0 0
         //              0 0 0 0 0
         //
-        // The six immediate neighbors of 'O' are shown as '*'
+        // 'O'的六个直接邻居被示为'*'
 
         /// <summary>
-        /// Each neuron has six immediate neighbors
+        /// 每个神经元具有六个直接邻居
         /// </summary>
         Hexagonal = 1,
     }

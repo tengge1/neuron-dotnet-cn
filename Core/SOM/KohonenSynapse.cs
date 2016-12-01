@@ -20,9 +20,7 @@
 namespace NeuronDotNet.Core.SOM
 {
     /// <summary>
-    /// A Kohonen Synapse is used to connect a neuron to a Position Neuron. It propagates the data
-    /// from input neuron to an output position neuron and self-organizes its weights to match the
-    /// input.
+    /// Kohonen Synapse用于将神经元连接到位置神经元。 它将数据从输入神经元传播到输出位置神经元，并自我组织其权重以匹配输入。
     /// </summary>
     public class KohonenSynapse : ISynapse
     {
@@ -32,10 +30,10 @@ namespace NeuronDotNet.Core.SOM
         private PositionNeuron targetNeuron;
 
         /// <summary>
-        /// Gets or sets the weight of the synapse
+        /// 获取或设置突触的权重
         /// </summary>
         /// <value>
-        /// Weight of the synapse
+        /// 突触的权重
         /// </value>
         public double Weight
         {
@@ -44,10 +42,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the parent connector
+        /// 获取父连接器
         /// </summary>
         /// <value>
-        /// Parent connector containing this synapse. It is never <c>null</c>.
+        /// 包含此突触的父连接器。 它永远不会<c> null </ c>。
         /// </value>
         public KohonenConnector Parent
         {
@@ -65,10 +63,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the source neuron
+        /// 获取源神经元
         /// </summary>
         /// <value>
-        /// The source neuron of the synapse. It is never <c>null</c>.
+        /// 突触的源神经元。 它永远不会<c> null </ c>。
         /// </value>
         public INeuron SourceNeuron
         {
@@ -76,10 +74,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the target neuron
+        /// 获取目标神经元
         /// </summary>
         /// <value>
-        /// The target neuron of the synapse. It is never <c>null</c>.
+        /// 突触的目标神经元。 它永远不会<c> null </ c>。
         /// </value>
         public PositionNeuron TargetNeuron
         {
@@ -87,19 +85,19 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates a new Kohonen Synapse connecting the given neurons
+        /// 创建一个新的Kohonen Synapse连接给定的神经元
         /// </summary>
         /// <param name="sourceNeuron">
-        /// The source neuron
+        /// 源神经元
         /// </param>
         /// <param name="targetNeuron">
-        /// The target neuron
+        /// 目标神经元
         /// </param>
         /// <param name="parent">
-        /// Parent connector containing this synapse
+        /// 包含此突触的父连接器
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// If any of the arguments is <c>null</c>
+        /// 如果任何参数是<c> null </ c>
         /// </exception>
         public KohonenSynapse(INeuron sourceNeuron, PositionNeuron targetNeuron, KohonenConnector parent)
         {
@@ -118,7 +116,7 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Propagates the data from source neuron to the target neuron
+        /// 将数据从源神经元传播到目标神经元
         /// </summary>
         public void Propagate()
         {
@@ -127,11 +125,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Optimizes the weight to match the input
+        /// 优化权重以匹配输入
         /// </summary>
         /// <param name="learningFactor">
-        /// Effective learning factor. This is a function of training progress, learning rate and
-        /// neighborhood value of target neuron.
+        /// 有效学习因素。 这是训练进度，学习速率和目标神经元的邻域值的函数。
         /// </param>
         public void OptimizeWeight(double learningFactor)
         {
@@ -139,12 +136,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Adds small random noise to weight of this synapse so that the network deviates from
-        /// its local optimum position (a local equilibrium state where further learning is of
-        /// no use)
+        /// 添加小随机噪声到这个突触的权重，以便网络偏离其局部最优位置（对进一步学习无用的局部平衡状态）
         /// </summary>
         /// <param name="jitterNoiseLimit">
-        /// Maximum absolute limit to the random noise added
+        /// 对随机噪声的最大绝对限制
         /// </param>
         public void Jitter(double jitterNoiseLimit)
         {

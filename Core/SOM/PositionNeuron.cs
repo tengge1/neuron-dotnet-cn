@@ -24,7 +24,7 @@ using System.Drawing;
 namespace NeuronDotNet.Core.SOM
 {
     /// <summary>
-    /// Position Neuron is a neuron in a two-dimensional space used in Kohonen networks.
+    /// 位置神经元是Kohonen网络中使用的二维空间中的神经元。
     /// </summary>
     public class PositionNeuron : INeuron
     {
@@ -37,10 +37,10 @@ namespace NeuronDotNet.Core.SOM
         internal double neighborhoodValue;
 
         /// <summary>
-        /// Gets the parent layer containing this neuron
+        /// 获取包含此神经元的父层
         /// </summary>
         /// <value>
-        /// The parent layer containing this neuron. It is never <c>null</c>
+        /// 包含这个神经元的父层。 它永远不会<c> null </ c>
         /// </value>
         public KohonenLayer Parent
         {
@@ -48,10 +48,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the neuron value
+        /// 获取神经元值
         /// </summary>
         /// <value>
-        /// Neuron Value
+        /// 神经元值
         /// </value>
         public double Value
         {
@@ -75,10 +75,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the position of the neuron
+        /// 获取神经元的位置
         /// </summary>
         /// <value>
-        /// Neuron Co-ordinate
+        /// 神经元坐标
         /// </value>
         public Point Coordinate
         {
@@ -86,10 +86,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the list of source synapses associated with this neuron
+        /// 获取与这个神经元相关的源突触的列表
         /// </summary>
         /// <value>
-        /// A list of source synapses. It can neither be <c>null</c>, nor contain <c>null</c> elements.
+        /// 源突触的列表。 它既不能<c> null </ c>，也不能包含<c> null </ c>元素。
         /// </value>
         public IList<ISynapse> SourceSynapses
         {
@@ -97,10 +97,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the list of target synapses associated with this neuron
+        /// 获取与该神经元相关联的目标突触的列表
         /// </summary>
         /// <value>
-        /// A list of target synapses. It can neither be <c>null</c>, nor contains <c>null</c> elements.
+        /// 目标突触的列表。 它既不能是<c> null </ c>，也不能包含<c> null </ c>元素。
         /// </value>
         public IList<ISynapse> TargetSynapses
         {
@@ -108,10 +108,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the neighborhood of this neuron with respect to the winner neuron in this layer
+        /// 获得这个神经元的相对于该层中的获胜者神经元的邻域
         /// </summary>
         /// <value>
-        /// Neighborhood Value
+        /// 邻域值
         /// </value>
         public double NeighborhoodValue
         {
@@ -119,19 +119,19 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates new position neuron
+        /// 创建新的位置神经元
         /// </summary>
         /// <param name="x">
-        /// X-Coordinate of the neuron positon
+        /// X - 神经元位置的坐标
         /// </param>
         /// <param name="y">
-        /// Y-Coordinate of the neuron position
+        /// Y-神经元位置的坐标
         /// </param>
         /// <param name="parent">
-        /// Parent layer containing this neuron
+        /// 包含此神经元的父层
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>parent</c> is <c>null</c>
+        /// 如果<c>父</ c>是<c> null </ c>
         /// </exception>
         public PositionNeuron(int x, int y, KohonenLayer parent)
             : this(new Point(x, y), parent)
@@ -139,16 +139,16 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates new positon neuron
+        /// 创建新的位置神经元
         /// </summary>
         /// <param name="coordinate">
-        /// Neuron Position
+        /// 神经元位置
         /// </param>
         /// <param name="parent">
-        /// Parent neuron containing this neuron
+        /// 包含这个神经元的父神经元
         /// </param>
         /// <value>
-        /// If <c>parent</c> is <c>null</c>
+        /// 如果<c>父</ c>是<c> null </ c>
         /// </value>
         public PositionNeuron(Point coordinate, KohonenLayer parent)
         {
@@ -160,7 +160,7 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Runs the neuron. (Propagates the source synapses and update input and output values)
+        /// 运行神经元。 （传播源突触并更新输入和输出值）
         /// </summary>
         public void Run()
         {
@@ -176,10 +176,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Trains weights of associated source synapses.
+        /// 训练相关源突触的权重。
         /// </summary>
         /// <param name="learningRate">
-        /// The current learning rate (this depends on training progress as well)
+        /// 当前学习率（这取决于培训进度）
         /// </param>
         public void Learn(double learningRate)
         {
