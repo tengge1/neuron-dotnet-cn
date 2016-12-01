@@ -1,71 +1,73 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
-		<meta name="author" content="Vijeth D" />
-		<meta name="copyright" content="neurondotnet.freehostia.com" />
-		<meta name="description" content="NeuronDotNet is an open source tool to build and run AI applications based on 'Artificial Neural Networks'. It is written in C# and is compatible with the .NET platform." />
-		<meta name="keywords"  content="neural networks, artificial neural networks, character recognition, artificial intelligence, open source, pattern recognition, voice recognition, intelligent systems, kohonen SOM, backpropagation, self organizing maps, SOM, kohonen" />
-		<title>NeuronDotNet - Artificial Neural Networks in C#</title>
-	</head>
-	<body>
-		<h2>NeuronDotNet</h2>
-		<p>NeuronDotNet is an open source tool to build and run AI applications based on 'Artificial Neural Networks'. It is written in C# and is compatible with the .NET 2.0 platform. This tool exploits the potentialities of object oriented design and modular programming. The objective of the project is to support the development of AI applications and also to support experimental research in the field by providing a centralized framework for creation, training and usage of different types of artificial neural networks.</p>
-		<p>NeuronDotNet is a free software. You can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
-		<p>NeuronDotNet is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
-		<p>You should have received a copy of the GNU General Public License along with this product. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a></p>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <meta name="author" content="Vijeth D" />
+    <meta name="copyright" content="neurondotnet.freehostia.com" />
+    <meta name="description" content="NeuronDotNet is an open source tool to build and run AI applications based on 'Artificial Neural Networks'. It is written in C# and is compatible with the .NET platform." />
+    <meta name="keywords" content="neural networks, artificial neural networks, character recognition, artificial intelligence, open source, pattern recognition, voice recognition, intelligent systems, kohonen SOM, backpropagation, self organizing maps, SOM, kohonen" />
+    <title>NeuronDotNet - C#人工神经网络框架</title>
+</head>
+<body>
+    <h2>NeuronDotNet</h2>
+    <p>NeuronDotNet是一个开源工具，用于构建和运行基于“人工神经网络”的AI应用程序。 它是用C＃编写的，并与.NET 2.0平台兼容。 这个工具利用面向对象设计和模块化编程的潜力。 该项目的目标是支持人工智能应用程序的开发，并通过为不同类型的人工神经网络的创建，训练和使用提供集中的框架，支持实地研究。</p>
+    <p>NeuronDotNet是一个免费软件。 您可以根据自由软件基金会发布的GNU通用公共许可证（版本3或许可证的任何更新版本）重新分发和/或修改它。</p>
+    <p>NeuronDotNet分布在希望它将是有用的，但没有任何保证; 甚至没有对适销性或适用于特定用途的隐含保证。 有关更多详细信息，请参阅GNU通用公共许可证。</p>
+    <p>您应该已经收到GNU通用公共许可证的副本以及此产品。 如果没有，请参见 <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a></p>
 
-		<h2>Quick Links</h2>
-		<ul>
-		<li><a href = "http://neurondotnet.freehostia.com">NeuronDotNet Home</a></li>
-		<li><a href = "http://neurondotnet.freehostia.com/manual/index.html">NeuronDotNet User Manual</a></li>
-		</ul>
-		
-		<h2>Samples</h2>
-		<ul>
-		<li><a href = "http://neurondotnet.freehostia.com/samples/xor.html">XOR Sample</a></li>
-		<li><a href = "http://neurondotnet.freehostia.com/samples/somdemo.html">Kohonen SOM Demo</a></li>
-		<li><a href = "http://neurondotnet.freehostia.com/samples/approximation.html">Function Approximation</a></li>
-		<li><a href = "http://neurondotnet.freehostia.com/samples/tspsolver.html">Traveling Salesman Problem Solver</a></li>
-		<li><a href = "http://neurondotnet.freehostia.com/samples/ocr.html">Handwritten Character Recognition</a></li>
-		</ul>
-		<a href = "http://neurondotnet.freehostia.com/samples/index.html">More samples</a>
-		<p>You are most welcome to send your suggestions, sample applications, code snippets, comments, feature requests, links to your neurondotnet applications or any other kind of feedback to <a href = "mailto:neurondotnet.feedback@gmail.com">neurondotnet.feedback@gmail.com</a></p>
+    <h2>快速链接</h2>
+    <ul>
+        <li><a href="http://neurondotnet.freehostia.com">NeuronDotNet首页</a></li>
+        <li><a href="http://neurondotnet.freehostia.com/manual/index.html">NeuronDotNet用户手册</a></li>
+    </ul>
 
-		<h2>Release Notes</h2>
-		<b>NeuronDotNet 3.0</b>
-		<p>Release Date: August 20th, 2008</p>
-		<ul>
-			<li>Support for neural networks with any acyclic structure of layers</li>
-			<li>One-One and Complete connectors are supported</li>
-			<li>Backpropagation networks and Kohonen SOMs are supported</li>
-			<li>Learning Rate changes from its initial value to a final value using a pluggable function (Linear, Logarithmic and Hyperbolic functions are built in)</li>
-			<li>Neural network initialization modules are pluggable (Random, Constant, NguyenWidrow and Normalized Random Functions are built in)</li>
-			<li>Custom activation funtions used in backpropagation networks are pluggable (Sigmoid, sine, tanh, logarithmic and linear functions are built in)</li>
-			<li>For a Kohonen Layer, Neighborhood functions are pluggable (Gaussian function and mexican hat functions are built in)</li>
-			<li>Various events are exposed which allow users to analyse how a network learns</li>
-			<li>Kohonen layers are planar in shape. However, we can have circular rows and/or columns which make them attain the shape of a cylindrical surface or a toroidal surface.
-			<li>Hexagonal and Rectangular Kohonen lattice topologies are supported</li>
-			<li>Training set has been defined to support Batch Training</li>
-			<li>API to add custom network architectures and learning algorithms</li>
-			<li>Layers, connectors, networks and training sets implement ISerializable interface</li>
-		</ul>
-		<b>NeuronDotNet 2.0</b>
-		<p>Release Date: November 1st, 2007</p>
-		<ul>
-			<li>Backpropagation neural networks with any acyclic structure of layers</li>
-			<li>Custom activation functions are pluggable</li>
-			<li>Enhanced BackPropagation Algorithm (using Momentum term, Weight Decay and Jitter).</li>
-			<li>OneOne and Complete connections between layers</li>
-		</ul>
-		<b>NeuronDotNet 1.0</b>
-		<p>Release Date: May 3rd, 2007</p>
-		<p>First release</p>
-		<ul>
-			<li>Support for simple feed-forward backpropagation neural networks</li>
-			<li>Activation functions - Sigmoid, Linear, Logarithminc, Sine or Tanh</li>
-		</ul>
-		</p>
-		<p><br/><b>Regards,<br/>NeuronDotNet Team</b></p>
-	</body>
+    <h2>Samples</h2>
+    <ul>
+        <li><a href="http://neurondotnet.freehostia.com/samples/xor.html">XOR例子</a></li>
+        <li><a href="http://neurondotnet.freehostia.com/samples/somdemo.html">Kohonen SOM例子</a></li>
+        <li><a href="http://neurondotnet.freehostia.com/samples/approximation.html">函数近似</a></li>
+        <li><a href="http://neurondotnet.freehostia.com/samples/tspsolver.html">旅行推销员问题解决</a></li>
+        <li><a href="http://neurondotnet.freehostia.com/samples/ocr.html">手写字符识别</a></li>
+    </ul>
+    <a href="http://neurondotnet.freehostia.com/samples/index.html">更多样品</a>
+    <p>欢迎您发送您的建议，示例应用程序，代码段，意见，功能请求，链接到您的神经网络应用程序或任何其他类型的反馈 <a href="mailto:neurondotnet.feedback@gmail.com">neurondotnet.feedback@gmail.com</a></p>
+
+    <h2>发行说明</h2>
+    <b>NeuronDotNet 3.0</b>
+    <p>发布日期：2008年8月20日</p>
+    <ul>
+        <li>支持具有任何非循环结构的层的神经网络</li>
+        <li>支持One-One和Complete连接器</li>
+        <li>支持反向传播网络和Kohonen SOM</li>
+        <li>学习率使用可插拔函数（线性，对数和双曲线函数内置）将速率从其初始值更改为最终值。</li>
+        <li>神经网络初始化模块是可插入的（随机，常数，NguyenWidrow和归一化随机函数内置）</li>
+        <li>反向传播网络中使用的自定义激活功能是可插拔的（Sigmoid，正弦，tanh，对数和线性函数是内置的）</li>
+        <li>对于Kohonen层，邻域函数是可插入的（高斯函数和墨西哥帽子函数是内置的）</li>
+        <li>暴露了允许用户分析网络如何学习的各种事件</li>
+        <li>
+            Kohonen层在形状上是平面的。 然而，我们可以具有圆形排和/或圆柱，使得它们获得圆柱形表面或环形表面的形状。
+        </li>
+        <li>支持六角形和矩形Kohonen格子拓扑</li>
+        <li>培训集已定义为支持批处理培训</li>
+        <li>API添加自定义网络体系结构和学习算法</li>
+        <li>层，连接器，网络和训练集实现ISerializable接口</li>
+    </ul>
+    <b>NeuronDotNet 2.0</b>
+    <p>发布日期：2007年11月1日</p>
+    <ul>
+        <li>具有任何非循环结构的层的反向传播神经网络</li>
+        <li>自定义激活功能是可插拔的</li>
+        <li>增强的BackPropagation算法（使用Momentum项，重量衰减和抖动）。</li>
+        <li>一层和层之间的完全连接</li>
+    </ul>
+    <b>NeuronDotNet 1.0</b>
+    <p>发布日期：2007年5月3日</p>
+    <p>首次发布</p>
+    <ul>
+        <li>支持简单的前馈反向传播神经网络</li>
+        <li>激活函数 - Sigmoid，Linear，Logarithminc，Sine或Tanh</li>
+    </ul>
+    </p>
+    <p><br /><b>问候，<br /> NeuronDotNet团队</b></p>
+</body>
 </html>
