@@ -23,13 +23,13 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core.Initializers
 {
     /// <summary>
-    /// An <see cref="IInitializer"/> using zero function
+    /// 一个<见cref =“IInitializer”/>使用零功能
     /// </summary>
     [Serializable]
     public class ZeroFunction : ConstantFunction
     {
         /// <summary>
-        /// Creates a new zero initializer function
+        /// 创建一个新的零初始化函数
         /// </summary>
         public ZeroFunction()
             : base(0d)
@@ -37,16 +37,16 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public ZeroFunction(SerializationInfo info, StreamingContext context)
             : base(info, context)

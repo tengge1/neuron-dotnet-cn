@@ -99,13 +99,13 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Initializes bias values of activation neurons in the activation layer.
+        /// 初始化激活层中激活神经元的偏置值。
         /// </summary>
         /// <param name="activationLayer">
-        /// The activation layer to initialize
+        /// 激活层初始化
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>activationLayer</c> is <c>null</c>
+        /// 如果<c> activationLayer </ c>为<c> null </ c>
         /// </exception>
         public void Initialize(ActivationLayer activationLayer)
         {
@@ -114,7 +114,7 @@ namespace NeuronDotNet.Core.Initializers
             int hiddenNeuronCount = 0;
             foreach (IConnector targetConnector in activationLayer.TargetConnectors)
             {
-                    hiddenNeuronCount += targetConnector.TargetLayer.NeuronCount;
+                hiddenNeuronCount += targetConnector.TargetLayer.NeuronCount;
             }
 
             double nGuyenWidrowFactor = NGuyenWidrowFactor(activationLayer.NeuronCount, hiddenNeuronCount);
@@ -126,18 +126,18 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Initializes weights of all backpropagation synapses in the backpropagation connector.
+        /// 初始化反向传播连接器中的所有反向传播突触的权重。
         /// </summary>
         /// <param name="connector">
-        /// The backpropagation connector to initialize.
+        /// 反向传播连接器初始化。
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>connector</c> is <c>null</c>
+        /// 如果<c>连接器</ c>为<c> null </ c>
         /// </exception>
         public void Initialize(BackpropagationConnector connector)
         {
             Helper.ValidateNotNull(connector, "connector");
-            
+
             double nGuyenWidrowFactor = NGuyenWidrowFactor(
                 connector.SourceLayer.NeuronCount, connector.TargetLayer.NeuronCount);
 
@@ -155,13 +155,13 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Initializes weights of all spatial synapses in a Kohonen connector.
+        /// 初始化Kohonen连接器中所有空间突触的权重。
         /// </summary>
         /// <param name="connector">
-        /// The Kohonen connector to initialize.
+        /// Kohonen连接器初始化。
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>connector</c> is <c>null</c>
+        /// 如果<c>连接器</ c>为<c> null </ c>
         /// </exception>
         public void Initialize(KohonenConnector connector)
         {
@@ -183,16 +183,16 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Private helper method to calculate Nguyen-Widrow factor
+        /// 私有帮助方法来计算Nguyen-Widrow因子
         /// </summary>
         /// <param name="inputNeuronCount">
-        /// Number of input neurons
+        /// 输入神经元数
         /// </param>
         /// <param name="hiddenNeuronCount">
-        /// Number of hidden neurons
+        /// 隐藏神经元的数量
         /// </param>
         /// <returns>
-        /// The Nguyen-Widrow factor
+        /// Nguyen-Widrow因子
         /// </returns>
         private double NGuyenWidrowFactor(int inputNeuronCount, int hiddenNeuronCount)
         {

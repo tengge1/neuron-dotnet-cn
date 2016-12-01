@@ -23,23 +23,23 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core.LearningRateFunctions
 {
     /// <summary>
-    /// An abstract base class for a learning rate function.
+    /// 学习速率函数的抽象基类。
     /// </summary>
     [Serializable]
     public abstract class AbstractFunction : ILearningRateFunction
     {
         /// <summary>
-        /// Initial Learning Rate
+        /// 初始学习率
         /// </summary>
         protected readonly double initialLearningRate;
 
         /// <summary>
-        /// Final Learning Rate
+        /// 最终学习率
         /// </summary>
         protected readonly double finalLearningRate;
 
         /// <summary>
-        /// Gets the initial value of learning rate
+        /// 获取学习率的初始值
         /// </summary>
         /// <value>
         /// Initial Learning Rate
@@ -50,7 +50,7 @@ namespace NeuronDotNet.Core.LearningRateFunctions
         }
 
         /// <summary>
-        /// Gets the final value of learning rate
+        /// 获得学习率的最终值
         /// </summary>
         /// <value>
         /// Final Learning Rate
@@ -61,13 +61,13 @@ namespace NeuronDotNet.Core.LearningRateFunctions
         }
 
         /// <summary>
-        /// Constructs a new instance with the specified initial and final values of learning rate.
+        /// 构造具有指定的学习率的初始值和最终值的新实例。
         /// </summary>
         /// <param name="initialLearningRate">
-        /// Initial value learning rate
+        /// 初始值学习率
         /// </param>
         /// <param name="finalLearningRate">
-        /// Final value learning rate
+        /// 最终值学习率
         /// </param>
         public AbstractFunction(double initialLearningRate, double finalLearningRate)
         {
@@ -76,16 +76,16 @@ namespace NeuronDotNet.Core.LearningRateFunctions
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// if <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public AbstractFunction(SerializationInfo info, StreamingContext context)
         {
@@ -96,13 +96,13 @@ namespace NeuronDotNet.Core.LearningRateFunctions
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the layer
+        /// 使用序列化图层所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// if <c>info</c> is <c>null</c>
@@ -116,22 +116,22 @@ namespace NeuronDotNet.Core.LearningRateFunctions
         }
 
         /// <summary>
-        /// Gets effective learning rate for current training iteration.
+        /// 获得当前训练迭代的有效学习率。
         /// </summary>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingEpochs">
-        /// Total number of training epochs
+        /// 训练时期的总数
         /// </param>
         /// <returns>
-        /// The effective learning rate for current training iteration
+        /// 当前训练迭代的有效学习率
         /// </returns>
         /// <exception cref="ArgumentException">
-        /// If <c>trainingEpochs</c> is zero or negative
+        /// 如果<c> trainingEpochs </ c>为零或负值
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// If <c>currentIteration</c> is negative or, if it is not less than <c>trainingEpochs</c>
+        /// 如果<c> currentIteration </ c>为负，或者如果它不小于<c> trainingEpochs </ c>
         /// </exception>
         public abstract double GetLearningRate(int currentIteration, int trainingEpochs);
     }

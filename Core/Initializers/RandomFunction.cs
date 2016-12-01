@@ -25,7 +25,7 @@ using NeuronDotNet.Core.SOM;
 namespace NeuronDotNet.Core.Initializers
 {
     /// <summary>
-    /// An <see cref="IInitializer"/> using random function
+    /// 一个<see cref =“IInitializer”/>使用随机函数
     /// </summary>
     [Serializable]
     public class RandomFunction : IInitializer
@@ -34,10 +34,10 @@ namespace NeuronDotNet.Core.Initializers
         private readonly double maxLimit;
 
         /// <summary>
-        /// Gets the minimum random limit
+        /// 获取最小随机限制
         /// </summary>
         /// <value>
-        /// Minimum limit to the random initial values
+        /// 随机初始值的最小限制
         /// </value>
         public double MinLimit
         {
@@ -45,10 +45,10 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Gets the maximum random limit
+        /// 获取最大随机限制
         /// </summary>
         /// <value>
-        /// Maximum limit to the random initial values
+        /// 随机初始值的最大限制
         /// </value>
         public double MaxLimit
         {
@@ -56,7 +56,7 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Creates a new random initialization function which uses random values from 0 to 1
+        /// 创建一个使用从0到1的随机值的新随机初始化函数
         /// </summary>
         public RandomFunction()
             : this(0, 1)
@@ -64,14 +64,14 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Creates a new random initialization function using random values between the specified
+        /// 使用指定之间的随机值创建新的随机初始化函数
         /// limits.
         /// </summary>
         /// <param name="minLimit">
-        /// The minimum limit
+        /// 最小限制
         /// </param>
         /// <param name="maxLimit">
-        /// The maximum limit
+        /// 最大限制
         /// </param>
         public RandomFunction(double minLimit, double maxLimit)
         {
@@ -80,16 +80,16 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public RandomFunction(SerializationInfo info, StreamingContext context)
         {
@@ -100,16 +100,16 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the initializer
+        /// 用序列化初始化程序所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -120,13 +120,13 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Initializes bias values of activation neurons in the activation layer.
+        /// 初始化激活层中激活神经元的偏置值。
         /// </summary>
         /// <param name="activationLayer">
-        /// The activation layer to initialize
+        /// 激活层初始化
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>activationLayer</c> is <c>null</c>
+        /// 如果<c> activationLayer </ c>为<c> null </ c>
         /// </exception>
         public void Initialize(ActivationLayer activationLayer)
         {
@@ -138,13 +138,13 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Initializes weights of all backpropagation synapses in the backpropagation connector.
+        /// 初始化反向传播连接器中的所有反向传播突触的权重。
         /// </summary>
         /// <param name="connector">
-        /// The backpropagation connector to initialize.
+        /// 反向传播连接器初始化。
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>connector</c> is <c>null</c>
+        /// 如果<c>连接器</ c>为<c> null </ c>
         /// </exception>
         public void Initialize(BackpropagationConnector connector)
         {
@@ -156,13 +156,13 @@ namespace NeuronDotNet.Core.Initializers
         }
 
         /// <summary>
-        /// Initializes weights of all spatial synapses in a Kohonen connector.
+        /// 初始化Kohonen连接器中所有空间突触的权重。
         /// </summary>
         /// <param name="connector">
-        /// The Kohonen connector to initialize.
+        /// Kohonen连接器初始化。
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>connector</c> is <c>null</c>
+        /// 如果<c>连接器</ c>为<c> null </ c>
         /// </exception>
         public void Initialize(KohonenConnector connector)
         {
