@@ -23,8 +23,7 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core.LearningRateFunctions
 {
     /// <summary>
-    /// Hyperbolic Learning Rate Function. As training progresses, The learning rate hyperbolically
-    /// changes from its initial value to the final value.
+    /// 双曲学习速率函数。 随着训练的进行，学习速率从其初始值双曲线变化到最终值。
     /// </summary>
     [Serializable]
     public sealed class HyperbolicFunction : AbstractFunction
@@ -32,14 +31,13 @@ namespace NeuronDotNet.Core.LearningRateFunctions
         private readonly double product;
 
         /// <summary>
-        /// Constructs a new instance of the hyperbolic function with the specified initial and
-        /// final values of learning rate.
+        /// 构造具有指定的学习率的初始和最终值的双曲线函数的新实例。
         /// </summary>
         /// <param name="initialLearningRate">
-        /// Initial value learning rate
+        /// 初始值学习率
         /// </param>
         /// <param name="finalLearningRate">
-        /// Final value learning rate
+        /// 最终值学习率
         /// </param>
         public HyperbolicFunction(double initialLearningRate, double finalLearningRate)
             : base(initialLearningRate, finalLearningRate)
@@ -48,16 +46,16 @@ namespace NeuronDotNet.Core.LearningRateFunctions
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// if <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public HyperbolicFunction(SerializationInfo info, StreamingContext context)
             : base(info, context)
@@ -66,23 +64,22 @@ namespace NeuronDotNet.Core.LearningRateFunctions
         }
 
         /// <summary>
-        /// Gets effective learning rate for current training iteration. (As training progresses, The
-        /// learning rate hyperbolically changes from its initial value to the final value)
+        /// 获得当前训练迭代的有效学习率。 （随着训练的进行，学习速率从其初始值双曲线变化到最终值）
         /// </summary>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingEpochs">
-        /// Total number of training epochs
+        /// 训练时期的总数
         /// </param>
         /// <returns>
-        /// The effective learning rate for current training iteration
+        /// 当前训练迭代的有效学习率
         /// </returns>
         /// <exception cref="ArgumentException">
-        /// If <c>trainingEpochs</c> is zero or negative
+        /// 如果<c> trainingEpochs </ c>为零或负值
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// If <c>currentIteration</c> is negative or, if it is not less than <c>trainingEpochs</c>
+        /// 如果<c> currentIteration </ c>为负，或者如果它不小于<c> trainingEpochs </ c>
         /// </exception>
         public override double GetLearningRate(int currentIteration, int trainingEpochs)
         {

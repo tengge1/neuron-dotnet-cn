@@ -25,7 +25,7 @@ using NeuronDotNet.Core.SOM.NeighborhoodFunctions;
 namespace NeuronDotNet.Core.SOM
 {
     /// <summary>
-    /// Kohonen Layer is a layer containing position neurons.
+    /// Kohonen层是包含位置神经元的层。
     /// </summary>
     [Serializable]
     public class KohonenLayer : Layer<PositionNeuron>
@@ -38,11 +38,10 @@ namespace NeuronDotNet.Core.SOM
         private INeighborhoodFunction neighborhoodFunction;
 
         /// <summary>
-        /// Gets the layer size
+        /// 获取图层大小
         /// </summary>
         /// <value>
-        /// Size of the layer (Width is number of columns, and Height is number of rows) (In other
-        /// words, width is number of neurons in a row and height is number of neurons in a column)
+        /// 层的大小（宽度是列数，高度是行数）（换句话说，宽度是行中的神经元的数量，高度是列中的神经元的数量）
         /// </value>
         public Size Size
         {
@@ -50,10 +49,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the lattice topology
+        /// 获取网格拓扑
         /// </summary>
         /// <value>
-        /// Lattice topology of neurons in the layer
+        /// 层中神经元的网格拓扑
         /// </value>
         public LatticeTopology Topology
         {
@@ -61,10 +60,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets or sets a boolean representing whether the neuron rows are circular
+        /// 获取或设置表示神经元行是否是圆形的布尔值
         /// </summary>
         /// <value>
-        /// A boolean representing whether the neuron rows are circular
+        /// 表示神经元行是否为圆形的布尔值
         /// </value>
         public bool IsRowCircular
         {
@@ -73,10 +72,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets or sets a boolean representing whether the neuron columns are circular
+        /// 获取或设置表示神经元列是否为圆形的布尔值
         /// </summary>
         /// <value>
-        /// A boolean representing whether the neuron columns are circular
+        /// 表示神经元列是否为圆形的布尔值
         /// </value>
         public bool IsColumnCircular
         {
@@ -85,10 +84,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets the winner neuron of the layer
+        /// 获取图层的优胜者神经元
         /// </summary>
         /// <value>
-        /// Winner Neuron
+        /// 优胜者神经元
         /// </value>
         public PositionNeuron Winner
         {
@@ -96,10 +95,10 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Gets or sets the neighborhood function
+        /// 获取或设置邻域函数
         /// </summary>
         /// <value>
-        /// Neighborhood Function
+        /// 邻域函数
         /// </value>
         public INeighborhoodFunction NeighborhoodFunction
         {
@@ -108,19 +107,19 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Position Neuron indexer
+        /// 位置神经元分度器
         /// </summary>
         /// <param name="x">
-        /// X-Coordinate of the neuron
+        /// X - 神经元的坐标
         /// </param>
         /// <param name="y">
-        /// Y-Coordinate of the neuron
+        /// Y-神经元的坐标
         /// </param>
         /// <returns>
-        /// The neuron at given co-ordinates
+        /// 在给定坐标的神经元
         /// </returns>
         /// <exception cref="IndexOutOfRangeException">
-        /// If any of the indices are out of range
+        /// 如果任何索引超出范围
         /// </exception>
         public PositionNeuron this[int x, int y]
         {
@@ -128,13 +127,13 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates a linear Kohonen layer
+        /// 创建线性Kohonen图层
         /// </summary>
         /// <param name="neuronCount">
-        /// Number of neurons in the layer
+        /// 图层中的神经元数量
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If <c>neuronCount</c> is zero or negative
+        /// 如果<c> neuronCount </ c>为零或负数
         /// </exception>
         public KohonenLayer(int neuronCount)
             : this(new Size(neuronCount, 1))
@@ -142,19 +141,19 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates a linear Kohonen layer with the given neighborhood function.
+        /// 使用给定的邻域函数创建线性Kohonen图层。
         /// </summary>
         /// <param name="neuronCount">
-        /// Number of neurons in the layer
+        /// 图层中的神经元数量
         /// </param>
         /// <param name="neighborhoodFunction">
-        /// The neighborhood function
+        /// 邻域函数
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>neighborhoodFunction</c> is <c>null</c>
+        /// 如果<c> neighborhoodFunction </ c>是<c> null </ c>
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If <c>neuronCount</c> is zero or negative
+        /// 如果<c> neuronCount </ c>为零或负数
         /// </exception>
         public KohonenLayer(int neuronCount, INeighborhoodFunction neighborhoodFunction)
             : this(new Size(neuronCount, 1), neighborhoodFunction)
@@ -162,13 +161,13 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates a Kohonen Layer with the given size
+        /// 创建具有给定大小的Kohonen图层
         /// </summary>
         /// <param name="size">
-        /// Size of the layer
+        /// 层的大小
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If layer width or layer height is not positive
+        /// 如果图层宽度或图层高度不为正值
         /// </exception>
         public KohonenLayer(Size size)
             : this(size, new GaussianFunction(Math.Max(size.Width, size.Height) / 2))
@@ -176,19 +175,19 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates a Kohonen layer with the specified size and neighborhood function
+        /// 创建具有指定大小和邻域函数的Kohonen图层
         /// </summary>
         /// <param name="size">
-        /// Size of the layer
+        /// 层的大小
         /// </param>
         /// <param name="neighborhoodFunction">
-        /// Neighborhood function to use
+        /// 邻居功能使用
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>neighborhoodFunction</c> is <c>null</c>
+        /// 如果<c> neighborhoodFunction </ c>是<c> null </ c>
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If layer width or layer height is not positive
+        /// 如果图层宽度或图层高度不为正值
         /// </exception>
         public KohonenLayer(Size size, INeighborhoodFunction neighborhoodFunction)
             : this(size, neighborhoodFunction, LatticeTopology.Rectangular)
@@ -196,16 +195,16 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates a Kohonen layer with the specified size and topology
+        /// 创建具有指定大小和拓扑的Kohonen图层
         /// </summary>
         /// <param name="size">
-        /// Size of the layer
+        /// 层的大小
         /// </param>
         /// <param name="topology">
-        /// Lattice topology of neurons
+        /// 神经元的网格拓扑
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If layer width or layer height is not positive, or if <c>topology</c> is invalid
+        /// 如果图层宽度或图层高度不为正，或如果<c>拓扑</ c>无效
         /// </exception>
         public KohonenLayer(Size size, LatticeTopology topology)
             : this(size, new GaussianFunction(Math.Max(size.Width, size.Height) / 2), topology)
@@ -213,32 +212,32 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Creates a Kohonen layer with the specified size, topology and neighborhood function
+        /// 创建具有指定大小，拓扑和邻域函数的Kohonen图层
         /// </summary>
         /// <param name="size">
-        /// Size of the layer
+        /// 层的大小
         /// </param>
         /// <param name="neighborhoodFunction">
-        /// Neighborhood function to use
+        /// 使用的邻域函数
         /// </param>
         /// <param name="topology">
-        /// Lattice topology of neurons
+        /// 神经元的网格拓扑
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>neighborhoodFunction</c> is <c>null</c>
+        /// 如果<c> neighborhoodFunction </ c>是<c> null </ c>
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If layer width or layer height is not positive, or if <c>topology</c> is invalid
+        /// 如果图层宽度或图层高度不为正，或如果<c>拓扑</ c>无效
         /// </exception>
         public KohonenLayer(Size size, INeighborhoodFunction neighborhoodFunction, LatticeTopology topology)
             : base(size.Width * size.Height)
         {
-            // The product can be positive when both width and height are negative. So, we need to check one.
+            // 当宽度和高度都为负时，该乘积可以为正。 所以，我们需要检查一个。
             Helper.ValidatePositive(size.Width, "size.Width");
 
             Helper.ValidateNotNull(neighborhoodFunction, "neighborhoodFunction");
             Helper.ValidateEnum(typeof(LatticeTopology), topology, "topology");
-            
+
             this.size = size;
             this.neighborhoodFunction = neighborhoodFunction;
             this.topology = topology;
@@ -254,16 +253,16 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public KohonenLayer(SerializationInfo info, StreamingContext context)
             : base(info, context)
@@ -272,7 +271,7 @@ namespace NeuronDotNet.Core.SOM
             this.size.Width = info.GetInt32("size.Width");
 
             this.topology = (LatticeTopology)info.GetValue("topology", typeof(LatticeTopology));
-            
+
             this.neighborhoodFunction
                 = info.GetValue("neighborhoodFunction", typeof(INeighborhoodFunction))
                 as INeighborhoodFunction;
@@ -282,16 +281,16 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the layer
+        /// 使用序列化图层所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -306,15 +305,15 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Initializes all neurons and makes them ready to undergo fresh training.
+        /// 初始化所有神经元，并使他们准备好接受新鲜的训练。
         /// </summary>
         public override void Initialize()
         {
-            //Since there are no initializable parameters in this layer, this is a do-nothing function
+            //由于在这个层中没有可初始化的参数，这是一个无用的功能
         }
 
         /// <summary>
-        /// Runs all neurons in the layer and finds the winner
+        /// 运行图层中的所有神经元，并找到最优解
         /// </summary>
         public override void Run()
         {
@@ -330,24 +329,23 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// All neurons and their are source connectors are allowed to learn. This method assumes a
-        /// learning environment where inputs, outputs and other parameters (if any) are appropriate.
+        /// 允许所有神经元及其源连接器学习。 该方法假定一个学习环境，其中输入，输出和其他参数（如果有的话）是适当的。
         /// </summary>
         /// <param name="currentIteration">
-        /// Current learning iteration
+        /// 当前学习迭代
         /// </param>
         /// <param name="trainingEpochs">
-        /// Total number of training epochs
+        /// 训练时期的总数
         /// </param>
         /// <exception cref="ArgumentException">
-        /// If <c>trainingEpochs</c> is zero or negative
+        /// 如果<c> trainingEpochs </ c>为零或负值
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// If <c>currentIteration</c> is negative or, if it is not less than <c>trainingEpochs</c>
+        /// 如果<c> currentIteration </ c>为负，或者如果它不小于<c> trainingEpochs </ c>
         /// </exception>
         public override void Learn(int currentIteration, int trainingEpochs)
         {
-            // Validation Delegated
+            // 验证委托
             neighborhoodFunction.EvaluateNeighborhood(this, currentIteration, trainingEpochs);
             base.Learn(currentIteration, trainingEpochs);
         }

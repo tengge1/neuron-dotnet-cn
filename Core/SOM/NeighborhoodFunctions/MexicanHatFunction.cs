@@ -23,44 +23,40 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core.SOM.NeighborhoodFunctions
 {
     /// <summary>
-    /// Mexican Hat Neighborhood Function is the normalized second derivative of a Gaussian function.
-    /// It is a continuous function with neighborhood value decreasing from unity at the winner to
-    /// a negative value at a certain point (forming an inhibitory influence) and then gradually
-    /// increasing to zero.
+    /// 墨西哥帽邻域函数是高斯函数的归一化二阶导数。它是一个连续函数，其邻域值从赢家处的单位减小到某一点处的负值（形成抑制性影响），然后逐渐增加到零。
     /// </summary>
     [Serializable]
     public sealed class MexicanHatFunction : INeighborhoodFunction
     {
         /* 
-         *  Mexican Hat Function = a * (1 - ((x-b)/c)square) * Exp( - 1/2 * ((x-b)/c)square)
+         *  墨西哥帽函数 = a * (1 - ((x-b)/c)square) * Exp( - 1/2 * ((x-b)/c)square)
          *
-         *  The parameter 'a' is the height of the curve's peak, 'b' is the position of the center of
-         *  the peak, and 'c' controls the width of the bell shape.
+         *  参数“a”是曲线峰的高度，“b”是峰中心的位置，“c”控制钟形的宽度。
          *
-         *  For a Mexican Hat Neighborhood function,
-         *  a = unity (the neighborhood at the winner)
-         *  b = winner position
-         *  c = depends on training progress.
+         *  对于墨西哥帽邻域函数，
+         *  a = 统一（最优解的邻域）
+         *  b = 最优解
+         *  c = 依赖训练过程
          *
-         *  Initial value of c is obtained from the user (as learning radius)
-         *  Note that, (x-b)square denotes the euclidean distance between winner neuron 'b' and neuron 'x' 
+         *  c的初始值从用户获得（作为学习半径）
+         *  注意，（x-b）方形表示获胜神经元'b'和神经元'x'之间的欧氏距离
          *
-         *  (Mexican hat function) vs (Hamming distance)
+         *  （墨西哥帽函数）vs（汉明距离）
          *                         _
          *                        / \
          *              _____    |   |    _____
          *                   \__/     \__/
          *                         .
-         *                       Winner
+         *                       最优解
          */
 
         private readonly double sigma = 0d;
 
         /// <summary>
-        /// Gets the value of sigma
+        /// 获取sigma的值
         /// </summary>
         /// <value>
-        /// Initial value of sigma
+        /// sigma的初始值
         /// </value>
         public double Sigma
         {
@@ -68,32 +64,32 @@ namespace NeuronDotNet.Core.SOM.NeighborhoodFunctions
         }
 
         /// <summary>
-        /// Creates a new Mexican Hat Neighborhood Function
+        /// 创建一个新的墨西哥帽邻域函数
         /// </summary>
         /// <param name="learningRadius">
-        /// Initial Learning Radius
+        /// 初始学习半径
         /// </param>
         public MexicanHatFunction(int learningRadius)
         {
-            // Full Width at Half Maximum for a Mexican Hat curve 
+            // 墨西哥帽曲线的半高全宽
             //        = 1.2518753 * sigma
-            // Full Width at Half Maximum (FWHM) is nothing but learning diameter
-            // so, learning radius = 0.62593765 * sigma
+            // 半高全宽（FWHM）只是学习直径
+            // 所以，学习半径 = 0.62593765 * sigma
 
             this.sigma = learningRadius / 0.6259d;
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public MexicanHatFunction(SerializationInfo info, StreamingContext context)
         {
@@ -102,16 +98,16 @@ namespace NeuronDotNet.Core.SOM.NeighborhoodFunctions
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the neighborhood function
+        /// 用序列化邻域函数所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -120,26 +116,25 @@ namespace NeuronDotNet.Core.SOM.NeighborhoodFunctions
         }
 
         /// <summary>
-        /// Determines the neighborhood of every neuron in the given Kohonen layer with respect to
-        /// winner neuron using Mexican Hat function
+        /// 使用墨西哥帽函数确定给定的Kohonen层中的每个神经元相对于获胜者神经元的邻域
         /// </summary>
         /// <param name="layer">
-        /// The Kohonen Layer containing neurons
+        /// 含有神经元的Kohonen层
         /// </param>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingEpochs">
-        /// Total number of training epochs
+        /// 训练时期的总数
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>layer</c> is <c>null</c>
+        /// 如果<c> layer </ c>为<c> null </ c>
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// If <c>trainingEpochs</c> is zero or negative
+        /// 如果<c> trainingEpochs </ c>为零或负值
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// If <c>currentIteration</c> is negative or, if it is not less than <c>trainingEpochs</c>
+        /// 如果<c> currentIteration </ c>为负，或者如果它不小于<c> trainingEpochs </ c>
         /// </exception>
         public void EvaluateNeighborhood(KohonenLayer layer, int currentIteration, int trainingEpochs)
         {
@@ -147,18 +142,18 @@ namespace NeuronDotNet.Core.SOM.NeighborhoodFunctions
             Helper.ValidatePositive(trainingEpochs, "trainingEpochs");
             Helper.ValidateWithinRange(currentIteration, 0, trainingEpochs - 1, "currentIteration");
 
-            // Winner co-ordinates
+            // 优胜者坐标
             int winnerX = layer.Winner.Coordinate.X;
             int winnerY = layer.Winner.Coordinate.Y;
 
-            // Layer width and height
+            // 图层宽度和高度
             int layerWidth = layer.Size.Width;
             int layerHeight = layer.Size.Height;
 
-            // Optimization: Pre-calculated 2-Sigma-Square (1e-9 to make sure it is non-zero)
+            // 优化：预先计算的2-Sigma-Square（1e-9，以确保它是非零）
             double sigmaSquare = sigma * sigma + 1e-9;
 
-            // Evaluate and update neighborhood value of each neuron
+            // 评估和更新每个神经元的邻域值
             foreach (PositionNeuron neuron in layer.Neurons)
             {
                 int dx = Math.Abs(winnerX - neuron.Coordinate.X);

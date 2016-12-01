@@ -22,30 +22,27 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core.SOM
 {
     /// <summary>
-    /// This interface represents a neighborhood function. A neighborhood function determines
-    /// the neighborhood of every neuron with respect to winner neuron. This function depends
-    /// on the the shape of the layer and also on the training progress.
+    /// 此接口表示邻域函数。 邻域函数确定相对于获胜者神经元的每个神经元的邻域。 该功能取决于层的形状以及训练进度。
     /// </summary>
     public interface INeighborhoodFunction : ISerializable
     {
         /// <summary>
-        /// Determines the neighborhood of every neuron in the given Kohonen layer with respect
-        /// to winner neuron.
+        /// 确定给定的Kohonen层中的每个神经元的邻域相对于获胜者神经元。
         /// </summary>
         /// <param name="layer">
-        /// The Kohonen Layer containing neurons
+        /// 含有神经元的Kohonen层
         /// </param>
         /// <param name="currentIteration">
-        /// Current training iteration
+        /// 当前训练迭代
         /// </param>
         /// <param name="trainingEpochs">
-        /// Training Epochs
+        /// 训练时代
         /// </param>
         /// <exception cref="System.ArgumentException">
-        /// If <c>trainingEpochs</c> is zero or negative
+        /// 如果<c> trainingEpochs </ c>为零或负值
         /// </exception>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// If <c>currentIteration</c> is negative or, if it is not less than <c>trainingEpochs</c>
+        /// 如果<c> currentIteration </ c>为负，或者如果它不小于<c> trainingEpochs </ c>
         /// </exception>
         void EvaluateNeighborhood(KohonenLayer layer, int currentIteration, int trainingEpochs);
     }

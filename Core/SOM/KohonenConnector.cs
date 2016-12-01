@@ -24,23 +24,22 @@ using NeuronDotNet.Core.Initializers;
 namespace NeuronDotNet.Core.SOM
 {
     /// <summary>
-    /// A Kohonen Connector is an <see cref="IConnector"/> consisting of a collection of Kohonen
-    /// synapses connecting any layer to a Kohonen Layer.
+    /// Kohonen连接器是由连接任何层到Kohonen层的Kohonen突触的集合组成的<see cref =“IConnector”/>。
     /// </summary>
     [Serializable]
     public class KohonenConnector : Connector<ILayer, KohonenLayer, KohonenSynapse>
     {
         /// <summary>
-        /// Creates a new Kohonen connector between the given layers.
+        /// 在给定图层之间创建一个新的Kohonen连接器。
         /// </summary>
         /// <param name="sourceLayer">
-        /// The source layer
+        /// 源层
         /// </param>
         /// <param name="targetLayer">
-        /// The target layer
+        /// 目标层
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>sourceLayer</c> or <c>targetLayer</c> is <c>null</c>
+        /// 如果<c> sourceLayer </ c>或<c> targetLayer </ c>为<c> null </ c>
         /// </exception>
         public KohonenConnector(ILayer sourceLayer, KohonenLayer targetLayer)
             : base(sourceLayer, targetLayer, ConnectionMode.Complete)
@@ -58,16 +57,16 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Deserialization Constructor
+        /// 反序列化构造函数
         /// </summary>
         /// <param name="info">
-        /// Serialization information to deserialize and obtain the data
+        /// 序列化信息反序列化和获取数据
         /// </param>
         /// <param name="context">
-        /// Serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public KohonenConnector(SerializationInfo info, StreamingContext context)
             : base(info, context)
@@ -87,16 +86,16 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Populates the serialization info with the data needed to serialize the connector
+        /// 使用序列化连接器所需的数据填充序列化信息
         /// </summary>
         /// <param name="info">
-        /// The serialization info to populate the data with
+        /// 用于填充数据的序列化信息
         /// </param>
         /// <param name="context">
-        /// The serialization context to use
+        /// 要使用的序列化上下文
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// If <c>info</c> is <c>null</c>
+        /// 如果<c> info </ c>是<c> null </ c>
         /// </exception>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -112,8 +111,7 @@ namespace NeuronDotNet.Core.SOM
         }
 
         /// <summary>
-        /// Initializes all synapses in the connector and makes them ready to undergo training
-        /// freshly. (Adjusts the weights of synapses using the initializer)
+        /// 初始化连接器中的所有突触，并使其准备好进行新训练。 （使用初始化器调整突触的权重）
         /// </summary>
         public override void Initialize()
         {
