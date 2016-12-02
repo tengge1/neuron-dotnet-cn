@@ -406,9 +406,9 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(345, 316);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(53, 12);
+            this.label18.Size = new System.Drawing.Size(41, 12);
             this.label18.TabIndex = 28;
-            this.label18.Text = "LR Func.";
+            this.label18.Text = "LR函数";
             // 
             // label19
             // 
