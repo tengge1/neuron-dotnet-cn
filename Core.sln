@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{44EB1D10-02A4-40A5-A0E5-8CAD6C16CED3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackpropNnTrainer", "NDNBackpropNnTrainer\BackpropNnTrainer.csproj", "{B7A4D63E-996B-4099-AB00-7705A0C124CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{44EB1D10-02A4-40A5-A0E5-8CAD6C16CED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44EB1D10-02A4-40A5-A0E5-8CAD6C16CED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44EB1D10-02A4-40A5-A0E5-8CAD6C16CED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A4D63E-996B-4099-AB00-7705A0C124CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A4D63E-996B-4099-AB00-7705A0C124CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A4D63E-996B-4099-AB00-7705A0C124CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A4D63E-996B-4099-AB00-7705A0C124CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
