@@ -8,7 +8,7 @@ namespace BackPropNnTrainer
 	public enum LearningRateFunction
     {
         /// <summary>
-        /// 指数型
+        /// 指数
         /// </summary>
 		Exponential,
 

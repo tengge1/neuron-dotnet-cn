@@ -172,7 +172,7 @@ namespace BackPropNnTrainer
 
         private void LoadForm(object sender, EventArgs e)
         {
-            // Fill learning function combo
+            // 填充学习函数数组
             comboLRFunction.Items.Add("(none)");
             foreach (LearningRateFunction lrf in Enum.GetValues(typeof(LearningRateFunction)))
             {
@@ -424,7 +424,7 @@ namespace BackPropNnTrainer
                         case InitializerFunction.Zero: initFunct = new ZeroFunction(); break;
                         default: throw new Exception("InitializerFunction undefined.");
                     }
-                    // NEED TO SET BACK TO PREVIOUS because Deserialization fails in new state. Don't know why.
+                    // 需要设置回前面因为反序列化在新状态下失败。 不知道为什么。
                     IInitializer oldInitializer;
                     foreach (ILayer layer in currentProject.Network.Layers)
                     {
@@ -440,7 +440,7 @@ namespace BackPropNnTrainer
                             conn.Initializer = oldInitializer;
                         }
                     }
-                    //currentProject.Network.Initialize(); Already called individually
+                    //currentProject.Network.Initialize（）; 已单独调用
                 }
                 catch (Exception ex)
                 {
@@ -542,26 +542,26 @@ namespace BackPropNnTrainer
         }
         private void SaveScreenParametersToCurrentNetwork()
         {
-            // Training cycles
+            // 训练周期
             currentProject.LearningParameters.MaxTrainingCycles = int.Parse(txtCycles.Text);
 
-            // Get learning rates
+            // 获得学习率
             currentProject.LearningParameters.InitialLearningRate = double.Parse(txtInitialLearningRate.Text);
             if (txtFinalLearningRate.Text.Length > 0)
                 currentProject.LearningParameters.FinalLearningRate = double.Parse(txtFinalLearningRate.Text);
             else
                 currentProject.LearningParameters.FinalLearningRate = null;
 
-            // Is a LRF selected in the combo?
+            // 是在组合中选择LRF吗？
             if (comboLRFunction.SelectedIndex > 0)
                 currentProject.LearningParameters.LearningRateFunction = (LearningRateFunction)comboLRFunction.SelectedItem;
             else
                 currentProject.LearningParameters.LearningRateFunction = null;
 
-            // Can we use the LRF? Require both learning rates
+            // 我们可以使用LRF吗？ 需要两个学习率
             if (comboLRFunction.SelectedIndex > 0 && currentProject.LearningParameters.FinalLearningRate.HasValue)
             {
-                // Set learning rate function
+                // 设置学习率函数
                 currentProject.Network.SetLearningRate(
                     LearningRateFactory.GetLearningRateFunction((LearningRateFunction)comboLRFunction.SelectedItem,
                         currentProject.LearningParameters.InitialLearningRate,
@@ -570,14 +570,14 @@ namespace BackPropNnTrainer
             }
             else
             {
-                // Set learning rates
+                // 设置学习率
                 if (currentProject.LearningParameters.FinalLearningRate.HasValue)
                     currentProject.Network.SetLearningRate(currentProject.LearningParameters.InitialLearningRate, currentProject.LearningParameters.FinalLearningRate.Value);
                 else
                     currentProject.Network.SetLearningRate(currentProject.LearningParameters.InitialLearningRate);
             }
 
-            // Set momentum in connectors (0 for not defined)
+            // 在连接器中设置动量（0未定义）
             double momentum = 0;
             if (textMomentum.Text.Length > 0) momentum = double.Parse(textMomentum.Text);
             foreach (ILayer layer in currentProject.Network.Layers)
@@ -602,7 +602,7 @@ namespace BackPropNnTrainer
                     totalSquaredError += error * error;
                 }
             }
-            // Return mean of the total squared error
+            // 返回总平方误差的平均值
             return totalSquaredError / (double)currentProject.CrossValidationSet.TrainingSampleCount;
         }
     }
