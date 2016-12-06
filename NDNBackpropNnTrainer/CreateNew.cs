@@ -64,11 +64,11 @@ namespace BackPropNnTrainer
                 // 输入层始终与输入计数是线性关系
                 LinearLayer inputLayer = new LinearLayer(inputCount);
 
-                // Create hidden layers
+                // 创建隐层
                 ActivationLayer hiddenLayer1 = null;
                 ActivationLayer hiddenLayer2 = null;
                 ActivationLayer outputLayer = null;
-                if (comboActFunction1.SelectedIndex < 0) { MessageBox.Show("Activation Function 1 must be selected."); return; }
+                if (comboActFunction1.SelectedIndex < 0) { MessageBox.Show("请选择激活函数！"); return; }
                 switch ((HiddenLayerType)comboActFunction1.SelectedItem)
                 {
                     case HiddenLayerType.Linear: hiddenLayer1 = new LinearLayer(int.Parse(textNeuronCount1.Text)); break;
@@ -89,7 +89,7 @@ namespace BackPropNnTrainer
                     }
                 }
 
-                if (comboOutputFunction.SelectedIndex < 0) { MessageBox.Show("Ouput Function must be selected."); return; }
+                if (comboOutputFunction.SelectedIndex < 0) { MessageBox.Show("请选择输出函数！"); return; }
                 switch ((HiddenLayerType)comboOutputFunction.SelectedItem)
                 {
                     case HiddenLayerType.Linear: outputLayer = new LinearLayer(outputCount); break;

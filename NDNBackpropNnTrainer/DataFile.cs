@@ -64,7 +64,7 @@ namespace BackPropNnTrainer
 
                     // 检查我们解析了足够多的列
                     if (cols.Length < inputCount + outputCount)
-                        throw new Exception("Input line has insufficient columns.");
+                        throw new Exception("输入数据列数不足！");
 
                     // 将字符串列移到向量
                     for (int index = 0; index < inputCount; index++)

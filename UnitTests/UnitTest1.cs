@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using NeuronDotNet.Core;
+using NeuronDotNet.Core.Backpropagation;
+using NeuronDotNet.Core.LearningRateFunctions;
 using NeuronDotNet.Core.SOM;
 
 namespace UnitTests
@@ -12,26 +14,34 @@ namespace UnitTests
         [TestMethod]
         public void TestMethod1()
         {
-            // 初始化
-            var inputLayer = new KohonenLayer(20);
-            var outputLayer = new KohonenLayer(20);
-            var network = new KohonenNetwork(inputLayer, outputLayer);
+            // 创建输入层、隐层和输出层
+            var inputLayer = new LinearLayer(1);
+            var hiddenLayer = new LinearLayer(5);
+            var outputLayer = new LinearLayer(1);
+
+            // 创建层之间的关联
+            new BackpropagationConnector(inputLayer, hiddenLayer, ConnectionMode.Complete);
+            new BackpropagationConnector(hiddenLayer, outputLayer, ConnectionMode.Complete);
+
+            // 创建神经网络
+            var network = new BackpropagationNetwork(inputLayer, outputLayer);
+            //network.SetLearningRate(new LinearFunction(0.1, 0.6));
             network.Initialize();
 
             // 训练
-            var inputVector = new double[] { 1, 2, 3, 4, 5 };
-            var outputVector = new double[] { 3, 6, 9, 12, 15 };
-            var trainingSample = new TrainingSample(inputVector, outputVector);
-            network.Learn(trainingSample, 0, 100);
+            var ran = new Random();
+            for (var i = 0; i < 100; i++)
+            {
+                var inputVector = new double[] { i };
+                var outputVector = new double[] { Math.PI * i };
+                var trainingSample = new TrainingSample(inputVector, outputVector);
+                network.Learn(trainingSample, i, 100);
+            }
 
             // 预测
-            var testInput = new double[] { 1, 1.5, 3, 6 };
+            var testInput = new double[] { 1 };
             var testOutput = network.Run(testInput);
-            foreach (var i in testOutput)
-            {
-                Console.Write(i + ",");
-            }
-            Console.WriteLine();
+            Console.WriteLine(testOutput[0]);
         }
     }
 }
