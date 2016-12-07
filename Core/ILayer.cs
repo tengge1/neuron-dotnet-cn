@@ -23,12 +23,12 @@ using System.Runtime.Serialization;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// 这个接口代表神经网络中的一个层。 层是用于类似神经元的容器。 一层内没有两个神经元可以相互连接。
+    /// 这个接口代表神经网络中的一个层。 层是用于类似神经元的容器。 同一层内的神经元互不相连。
     /// </summary>
     public interface ILayer : ISerializable
     {
         /// <summary>
-        /// 获取神经元计数
+        /// 获取神经元数量
         /// </summary>
         /// <value>
         /// 图层中的神经元数量。 它总是正数。
@@ -36,7 +36,7 @@ namespace NeuronDotNet.Core
         int NeuronCount { get; }
 
         /// <summary>
-        /// 显示枚举器以迭代层中的所有神经元
+        /// 提供枚举接口，以迭代层中的所有神经元
         /// </summary>
         /// <value>
         /// 神经元枚举。 没有枚举的神经元可以为null。
@@ -47,7 +47,7 @@ namespace NeuronDotNet.Core
         /// 神经元索引
         /// </summary>
         /// <param name="index">
-        /// Index
+        /// 索引
         /// </param>
         /// <returns>
         /// 位于指定索引的神经元
@@ -90,7 +90,7 @@ namespace NeuronDotNet.Core
         double LearningRate { get; }
 
         /// <summary>
-        /// 获取学习速率函数
+        /// 获取学习率函数
         /// </summary>
         /// <value>
         /// 学习率训练时使用的函数。 它永不为null
@@ -114,10 +114,10 @@ namespace NeuronDotNet.Core
         /// 设置学习率的初始值和最终值。 在学习过程中，有效学习率从初始值均匀地变化到最终值
         /// </summary>
         /// <param name="initialLearningRate">
-        /// Initial value of learning rate
+        /// 初始学习率
         /// </param>
         /// <param name="finalLearningRate">
-        /// Final value of learning rate
+        /// 最终学习率
         /// </param>
         void SetLearningRate(double initialLearningRate, double finalLearningRate);
 
@@ -155,7 +155,7 @@ namespace NeuronDotNet.Core
         double[] GetOutput();
 
         /// <summary>
-        /// Runs all neurons in the layer.
+        /// 运行该层中所有的神经元
         /// </summary>
         void Run();
 

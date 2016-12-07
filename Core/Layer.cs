@@ -25,7 +25,7 @@ using NeuronDotNet.Core.LearningRateFunctions;
 namespace NeuronDotNet.Core
 {
     /// <summary>
-    /// 层是类似神经元的抽象容器。 一层内没有两个神经元可以相互连接。
+    /// 层是类似神经元的抽象容器。 同一层内的神经元互不相连。
     /// </summary>
     /// <typeparam name="TNeuron">图层中的神经元类型</typeparam>
     [Serializable]
@@ -57,7 +57,7 @@ namespace NeuronDotNet.Core
         protected IInitializer initializer = null;
 
         /// <summary>
-        /// 获得神经元计数
+        /// 获得神经元数量
         /// </summary>
         /// <value>
         /// 图层中的神经元数量。 它始终是正的。
