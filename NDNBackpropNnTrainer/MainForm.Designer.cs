@@ -421,35 +421,35 @@ namespace BackPropNnTrainer
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.loadToolStripMenuItem.Text = "载入";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.saveToolStripMenuItem.Text = "保存";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.saveAsToolStripMenuItem.Text = "另存为";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.newToolStripMenuItem.Text = "新建";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.exitToolStripMenuItem.Text = "退出";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -465,14 +465,14 @@ namespace BackPropNnTrainer
             // saveTrainingSetToolStripMenuItem
             // 
             this.saveTrainingSetToolStripMenuItem.Name = "saveTrainingSetToolStripMenuItem";
-            this.saveTrainingSetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveTrainingSetToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveTrainingSetToolStripMenuItem.Text = "保存训练集";
             this.saveTrainingSetToolStripMenuItem.Click += new System.EventHandler(this.saveTrainingSetToolStripMenuItem_Click);
             // 
             // saveCVSetToolStripMenuItem
             // 
             this.saveCVSetToolStripMenuItem.Name = "saveCVSetToolStripMenuItem";
-            this.saveCVSetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveCVSetToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveCVSetToolStripMenuItem.Text = "保存CVSet";
             this.saveCVSetToolStripMenuItem.Click += new System.EventHandler(this.saveCVSetToolStripMenuItem_Click);
             // 

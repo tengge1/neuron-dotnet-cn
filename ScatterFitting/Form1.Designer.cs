@@ -32,9 +32,9 @@
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNew = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOperate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCalculate = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +53,7 @@
             this.tsmiOperate});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(928, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(798, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,14 +70,20 @@
             // tsmiNew
             // 
             this.tsmiNew.Name = "tsmiNew";
-            this.tsmiNew.Size = new System.Drawing.Size(152, 22);
+            this.tsmiNew.Size = new System.Drawing.Size(100, 22);
             this.tsmiNew.Text = "新建";
             // 
             // tsmiOpen
             // 
             this.tsmiOpen.Name = "tsmiOpen";
-            this.tsmiOpen.Size = new System.Drawing.Size(152, 22);
+            this.tsmiOpen.Size = new System.Drawing.Size(100, 22);
             this.tsmiOpen.Text = "打开";
+            // 
+            // tsmiSave
+            // 
+            this.tsmiSave.Name = "tsmiSave";
+            this.tsmiSave.Size = new System.Drawing.Size(100, 22);
+            this.tsmiSave.Text = "保存";
             // 
             // tsmiOperate
             // 
@@ -90,15 +96,9 @@
             // tsmiCalculate
             // 
             this.tsmiCalculate.Name = "tsmiCalculate";
-            this.tsmiCalculate.Size = new System.Drawing.Size(152, 22);
+            this.tsmiCalculate.Size = new System.Drawing.Size(100, 22);
             this.tsmiCalculate.Text = "计算";
             this.tsmiCalculate.Click += new System.EventHandler(this.tsmiCalculate_Click);
-            // 
-            // tsmiSave
-            // 
-            this.tsmiSave.Name = "tsmiSave";
-            this.tsmiSave.Size = new System.Drawing.Size(152, 22);
-            this.tsmiSave.Text = "保存";
             // 
             // dgvData
             // 
@@ -114,7 +114,7 @@
             this.dgvData.Location = new System.Drawing.Point(0, 25);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(928, 679);
+            this.dgvData.Size = new System.Drawing.Size(798, 402);
             this.dgvData.TabIndex = 1;
             // 
             // Column1
@@ -151,7 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 704);
+            this.ClientSize = new System.Drawing.Size(798, 427);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
