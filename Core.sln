@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BpNet", "BpNet\BpNet.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPT", "SPT\SPT.csproj", "{03A0AF65-0A22-48EE-A852-C09A3645DAAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScatterFitting", "ScatterFitting\ScatterFitting.csproj", "{DA415088-9E54-4812-A0EC-5498237DACAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{03A0AF65-0A22-48EE-A852-C09A3645DAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03A0AF65-0A22-48EE-A852-C09A3645DAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03A0AF65-0A22-48EE-A852-C09A3645DAAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA415088-9E54-4812-A0EC-5498237DACAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA415088-9E54-4812-A0EC-5498237DACAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA415088-9E54-4812-A0EC-5498237DACAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA415088-9E54-4812-A0EC-5498237DACAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

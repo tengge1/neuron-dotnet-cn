@@ -28,7 +28,7 @@ namespace NeuronDotNet.Core
     public interface IConnector : ISerializable
     {
         /// <summary>
-        /// 获取源图层
+        /// 获取源层
         /// </summary>
         /// <value>
         /// 源层。 它永不会为null。
