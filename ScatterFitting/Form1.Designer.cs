@@ -33,8 +33,6 @@
             this.tsmiNew = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiOperate = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCalculate = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +40,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tsmiCalculate = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +49,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
-            this.tsmiOperate});
+            this.tsmiCalculate});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(798, 25);
@@ -85,21 +84,6 @@
             this.tsmiSave.Size = new System.Drawing.Size(100, 22);
             this.tsmiSave.Text = "保存";
             // 
-            // tsmiOperate
-            // 
-            this.tsmiOperate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiCalculate});
-            this.tsmiOperate.Name = "tsmiOperate";
-            this.tsmiOperate.Size = new System.Drawing.Size(44, 21);
-            this.tsmiOperate.Text = "操作";
-            // 
-            // tsmiCalculate
-            // 
-            this.tsmiCalculate.Name = "tsmiCalculate";
-            this.tsmiCalculate.Size = new System.Drawing.Size(100, 22);
-            this.tsmiCalculate.Text = "计算";
-            this.tsmiCalculate.Click += new System.EventHandler(this.tsmiCalculate_Click);
-            // 
             // dgvData
             // 
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -114,7 +98,7 @@
             this.dgvData.Location = new System.Drawing.Point(0, 25);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 23;
-            this.dgvData.Size = new System.Drawing.Size(798, 402);
+            this.dgvData.Size = new System.Drawing.Size(798, 532);
             this.dgvData.TabIndex = 1;
             // 
             // Column1
@@ -147,11 +131,18 @@
             this.Column7.HeaderText = "相对误差";
             this.Column7.Name = "Column7";
             // 
+            // tsmiCalculate
+            // 
+            this.tsmiCalculate.Name = "tsmiCalculate";
+            this.tsmiCalculate.Size = new System.Drawing.Size(44, 21);
+            this.tsmiCalculate.Text = "计算";
+            this.tsmiCalculate.Click += new System.EventHandler(this.tsmiCalculate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 427);
+            this.ClientSize = new System.Drawing.Size(798, 557);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -172,8 +163,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiNew;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpen;
-        private System.Windows.Forms.ToolStripMenuItem tsmiOperate;
-        private System.Windows.Forms.ToolStripMenuItem tsmiCalculate;
         private System.Windows.Forms.ToolStripMenuItem tsmiSave;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -182,6 +171,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCalculate;
     }
 }
 
