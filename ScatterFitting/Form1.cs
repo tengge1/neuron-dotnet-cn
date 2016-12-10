@@ -91,7 +91,7 @@ namespace ScatterFitting
 
             // 创建输入层、隐层和输出层
             var inputLayer = new SigmoidLayer(2);
-            var hiddenLayer = new SigmoidLayer(10);
+            var hiddenLayer = new SigmoidLayer(int.Parse(txtHiddenLayerCount.Text));
             var outputLayer = new SigmoidLayer(1);
 
             // 创建层之间的关联
@@ -100,7 +100,7 @@ namespace ScatterFitting
 
             // 创建神经网络
             var network = new BackpropagationNetwork(inputLayer, outputLayer);
-            network.SetLearningRate(0.1);
+            network.SetLearningRate(double.Parse(txtInitialLearningRate.Text), double.Parse(txtFinalLearningRate.Text));
 
             // 进行训练
             var trainingSet = new TrainingSet(2, 1);
@@ -115,7 +115,8 @@ namespace ScatterFitting
                 var trainingSample = new TrainingSample(inputVector, outputVector);
                 trainingSet.Add(trainingSample);
             }
-            network.Learn(trainingSet, 100000);
+            network.SetLearningRate(0.3, 0.1);
+            network.Learn(trainingSet, int.Parse(txtTrainingEpochs.Text));
             network.StopLearning();
 
             // 进行预测
