@@ -80,19 +80,10 @@ namespace ScatterFitting
         /// <param name="e"></param>
         private void tsmiCalculate_Click(object sender, EventArgs e)
         {
-            var max = 1d;
-            for (var i = 0; i < 17; i++)
-            {
-                for (var j = 0; j < 3; j++)
-                {
-                    max = Math.Max(data[i, j], max);
-                }
-            }
-
             // 创建输入层、隐层和输出层
-            var inputLayer = new SigmoidLayer(2);
+            var inputLayer = new LinearLayer(2);
             var hiddenLayer = new SigmoidLayer(int.Parse(txtHiddenLayerCount.Text));
-            var outputLayer = new SigmoidLayer(1);
+            var outputLayer = new LinearLayer(1);
 
             // 创建层之间的关联
             new BackpropagationConnector(inputLayer, hiddenLayer, ConnectionMode.Complete).Initializer = new RandomFunction(0, 0.3);
@@ -106,9 +97,9 @@ namespace ScatterFitting
             var trainingSet = new TrainingSet(2, 1);
             for (var i = 0; i < 17; i++)
             {
-                var x1 = data[i, 0] / max;
-                var x2 = data[i, 1] / max;
-                var y = data[i, 2] / max;
+                var x1 = data[i, 0];
+                var x2 = data[i, 1];
+                var y = data[i, 2];
 
                 var inputVector = new double[] { x1, x2 };
                 var outputVector = new double[] { y };
@@ -122,17 +113,17 @@ namespace ScatterFitting
             // 进行预测
             for (var i = 0; i < 17; i++)
             {
-                var x1 = data[i, 0] / max;
-                var x2 = data[i, 1] / max;
-                var y = data[i, 2] / max;
+                var x1 = data[i, 0];
+                var x2 = data[i, 1];
+                var y = data[i, 2];
 
                 var testInput = new double[] { x1, x2 };
                 var testOutput = network.Run(testInput)[0];
 
-                var absolute = (testOutput - y) * max;
+                var absolute = testOutput - y;
                 var relative = Math.Abs((testOutput - y) / testOutput);
 
-                dgvData.Rows[i].Cells[3].Value = (testOutput * max).ToString("f3");
+                dgvData.Rows[i].Cells[3].Value = testOutput.ToString("f3");
                 dgvData.Rows[i].Cells[4].Value = absolute.ToString("f3");
                 dgvData.Rows[i].Cells[5].Value = (relative * 100).ToString("f1") + "%";
             }

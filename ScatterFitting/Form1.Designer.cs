@@ -42,22 +42,22 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTrainingEpochs = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtHiddenLayerCount = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.txtInitialLearningRate = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.txtFinalLearningRate = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtInitialLearningRate = new System.Windows.Forms.TextBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtHiddenLayerCount = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTrainingEpochs = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -192,124 +192,13 @@
             this.splitContainer1.SplitterDistance = 344;
             this.splitContainer1.TabIndex = 2;
             // 
-            // label1
+            // txtFinalLearningRate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 321);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "训练次数";
-            // 
-            // txtTrainingEpochs
-            // 
-            this.txtTrainingEpochs.Location = new System.Drawing.Point(144, 318);
-            this.txtTrainingEpochs.Name = "txtTrainingEpochs";
-            this.txtTrainingEpochs.Size = new System.Drawing.Size(100, 21);
-            this.txtTrainingEpochs.TabIndex = 1;
-            this.txtTrainingEpochs.Text = "10000";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "输入层类型";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(144, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "隐层类型";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(144, 66);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
-            this.comboBox2.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 111);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "输出层类型";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(144, 108);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 20);
-            this.comboBox3.TabIndex = 7;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 153);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 12);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "隐层神经元数";
-            // 
-            // txtHiddenLayerCount
-            // 
-            this.txtHiddenLayerCount.Location = new System.Drawing.Point(144, 150);
-            this.txtHiddenLayerCount.Name = "txtHiddenLayerCount";
-            this.txtHiddenLayerCount.Size = new System.Drawing.Size(100, 21);
-            this.txtHiddenLayerCount.TabIndex = 9;
-            this.txtHiddenLayerCount.Text = "5";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 195);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "初始化函数";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(144, 192);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 20);
-            this.comboBox4.TabIndex = 11;
-            // 
-            // txtInitialLearningRate
-            // 
-            this.txtInitialLearningRate.Location = new System.Drawing.Point(144, 234);
-            this.txtInitialLearningRate.Name = "txtInitialLearningRate";
-            this.txtInitialLearningRate.Size = new System.Drawing.Size(100, 21);
-            this.txtInitialLearningRate.TabIndex = 12;
-            this.txtInitialLearningRate.Text = "0.01";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 237);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 12);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "初始学习率";
+            this.txtFinalLearningRate.Location = new System.Drawing.Point(144, 276);
+            this.txtFinalLearningRate.Name = "txtFinalLearningRate";
+            this.txtFinalLearningRate.Size = new System.Drawing.Size(100, 21);
+            this.txtFinalLearningRate.TabIndex = 15;
+            this.txtFinalLearningRate.Text = "0.01";
             // 
             // label8
             // 
@@ -320,13 +209,130 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "最终学习率";
             // 
-            // txtFinalLearningRate
+            // label7
             // 
-            this.txtFinalLearningRate.Location = new System.Drawing.Point(144, 276);
-            this.txtFinalLearningRate.Name = "txtFinalLearningRate";
-            this.txtFinalLearningRate.Size = new System.Drawing.Size(100, 21);
-            this.txtFinalLearningRate.TabIndex = 15;
-            this.txtFinalLearningRate.Text = "0.01";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(21, 237);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "初始学习率";
+            // 
+            // txtInitialLearningRate
+            // 
+            this.txtInitialLearningRate.Location = new System.Drawing.Point(144, 234);
+            this.txtInitialLearningRate.Name = "txtInitialLearningRate";
+            this.txtInitialLearningRate.Size = new System.Drawing.Size(100, 21);
+            this.txtInitialLearningRate.TabIndex = 12;
+            this.txtInitialLearningRate.Text = "0.01";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(144, 192);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(121, 20);
+            this.comboBox4.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 195);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "初始化函数";
+            // 
+            // txtHiddenLayerCount
+            // 
+            this.txtHiddenLayerCount.Location = new System.Drawing.Point(144, 150);
+            this.txtHiddenLayerCount.Name = "txtHiddenLayerCount";
+            this.txtHiddenLayerCount.Size = new System.Drawing.Size(100, 21);
+            this.txtHiddenLayerCount.TabIndex = 9;
+            this.txtHiddenLayerCount.Text = "5";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 153);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 12);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "隐层神经元数";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(144, 108);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 20);
+            this.comboBox3.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 111);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "输出层类型";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(144, 66);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "隐层类型";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "LinearLayer（线性）",
+            "SigmoidLayer（S形）",
+            "LogarithmLayer（对数）",
+            "SineLayer（正弦）",
+            "TanhLayer（双曲正切）"});
+            this.comboBox1.Location = new System.Drawing.Point(144, 24);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "输入层类型";
+            // 
+            // txtTrainingEpochs
+            // 
+            this.txtTrainingEpochs.Location = new System.Drawing.Point(144, 318);
+            this.txtTrainingEpochs.Name = "txtTrainingEpochs";
+            this.txtTrainingEpochs.Size = new System.Drawing.Size(100, 21);
+            this.txtTrainingEpochs.TabIndex = 1;
+            this.txtTrainingEpochs.Text = "10000";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 321);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "训练次数";
             // 
             // Form1
             // 
