@@ -50,11 +50,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtHiddenLayerCount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cboOutputLayerType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cboHiddenLayerType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboInputLayerType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTrainingEpochs = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -176,11 +176,11 @@
             this.splitContainer1.Panel1.Controls.Add(this.label6);
             this.splitContainer1.Panel1.Controls.Add(this.txtHiddenLayerCount);
             this.splitContainer1.Panel1.Controls.Add(this.label5);
-            this.splitContainer1.Panel1.Controls.Add(this.comboBox3);
+            this.splitContainer1.Panel1.Controls.Add(this.cboOutputLayerType);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
-            this.splitContainer1.Panel1.Controls.Add(this.comboBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.cboHiddenLayerType);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
-            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.cboInputLayerType);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.txtTrainingEpochs);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
@@ -260,13 +260,13 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "隐层神经元数";
             // 
-            // comboBox3
+            // cboOutputLayerType
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(144, 108);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 20);
-            this.comboBox3.TabIndex = 7;
+            this.cboOutputLayerType.FormattingEnabled = true;
+            this.cboOutputLayerType.Location = new System.Drawing.Point(144, 108);
+            this.cboOutputLayerType.Name = "cboOutputLayerType";
+            this.cboOutputLayerType.Size = new System.Drawing.Size(121, 20);
+            this.cboOutputLayerType.TabIndex = 7;
             // 
             // label4
             // 
@@ -277,13 +277,13 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "输出层类型";
             // 
-            // comboBox2
+            // cboHiddenLayerType
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(144, 66);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
-            this.comboBox2.TabIndex = 5;
+            this.cboHiddenLayerType.FormattingEnabled = true;
+            this.cboHiddenLayerType.Location = new System.Drawing.Point(144, 66);
+            this.cboHiddenLayerType.Name = "cboHiddenLayerType";
+            this.cboHiddenLayerType.Size = new System.Drawing.Size(121, 20);
+            this.cboHiddenLayerType.TabIndex = 5;
             // 
             // label3
             // 
@@ -294,19 +294,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "隐层类型";
             // 
-            // comboBox1
+            // cboInputLayerType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "LinearLayer（线性）",
-            "SigmoidLayer（S形）",
-            "LogarithmLayer（对数）",
-            "SineLayer（正弦）",
-            "TanhLayer（双曲正切）"});
-            this.comboBox1.Location = new System.Drawing.Point(144, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 3;
+            this.cboInputLayerType.FormattingEnabled = true;
+            this.cboInputLayerType.Location = new System.Drawing.Point(144, 24);
+            this.cboInputLayerType.Name = "cboInputLayerType";
+            this.cboInputLayerType.Size = new System.Drawing.Size(121, 20);
+            this.cboInputLayerType.TabIndex = 3;
             // 
             // label2
             // 
@@ -377,10 +371,10 @@
         private System.Windows.Forms.TextBox txtTrainingEpochs;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboHiddenLayerType;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cboInputLayerType;
+        private System.Windows.Forms.ComboBox cboOutputLayerType;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtHiddenLayerCount;

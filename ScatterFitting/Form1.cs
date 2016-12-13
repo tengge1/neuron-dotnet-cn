@@ -22,6 +22,18 @@ namespace ScatterFitting
     public partial class Form1 : Form
     {
         /// <summary>
+        /// 图层类型
+        /// </summary>
+        string[,] layerType = new string[,]
+        {
+            { "LinearLayer", "线性" },
+            { "SigmoidLayer","S形" },
+            { "LogarithmLayer", "对数" },
+            { "SineLayer", "正弦" },
+            { "TanhLayer", "双曲正切" }
+        };
+
+        /// <summary>
         /// 测试数据
         /// </summary>
         double[,] data = new double[,]
@@ -60,6 +72,22 @@ namespace ScatterFitting
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
+            // 填充图层类型
+            for (var i = 0; i < 5; i++)
+            {
+                var type = layerType[i, 0];
+                cboInputLayerType.Items.Add(type);
+                cboHiddenLayerType.Items.Add(type);
+                cboOutputLayerType.Items.Add(type);
+            }
+            cboInputLayerType.SelectedItem = "LinearLayer";
+            cboHiddenLayerType.SelectedItem = "SigmoidLayer";
+            cboOutputLayerType.SelectedItem = "LinearLayer";
+            cboInputLayerType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboHiddenLayerType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboOutputLayerType.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // 填充数据表
             for (var i = 0; i < 17; i++)
             {
                 var row = new DataGridViewRow();
@@ -81,9 +109,9 @@ namespace ScatterFitting
         private void tsmiCalculate_Click(object sender, EventArgs e)
         {
             // 创建输入层、隐层和输出层
-            var inputLayer = new LinearLayer(2);
-            var hiddenLayer = new SigmoidLayer(int.Parse(txtHiddenLayerCount.Text));
-            var outputLayer = new LinearLayer(1);
+            ActivationLayer inputLayer = GetLayer(cboInputLayerType.SelectedItem.ToString(), 2);
+            ActivationLayer hiddenLayer = GetLayer(cboHiddenLayerType.SelectedItem.ToString(), int.Parse(txtHiddenLayerCount.Text));
+            ActivationLayer outputLayer = GetLayer(cboOutputLayerType.SelectedItem.ToString(), 1);
 
             // 创建层之间的关联
             new BackpropagationConnector(inputLayer, hiddenLayer, ConnectionMode.Complete).Initializer = new RandomFunction(0, 0.3);
@@ -126,6 +154,31 @@ namespace ScatterFitting
                 dgvData.Rows[i].Cells[3].Value = testOutput.ToString("f3");
                 dgvData.Rows[i].Cells[4].Value = absolute.ToString("f3");
                 dgvData.Rows[i].Cells[5].Value = (relative * 100).ToString("f1") + "%";
+            }
+        }
+
+        /// <summary>
+        /// 根据图层名称和神经元数量获取图层实例
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="neuronCount"></param>
+        /// <returns></returns>
+        private ActivationLayer GetLayer(string name, int neuronCount)
+        {
+            switch (name)
+            {
+                case "LinearLayer":
+                    return new LinearLayer(neuronCount);
+                case "SigmoidLayer":
+                    return new SigmoidLayer(neuronCount);
+                case "LogarithmLayer":
+                    return new LogarithmLayer(neuronCount);
+                case "SineLayer":
+                    return new SineLayer(neuronCount);
+                case "TanhLayer":
+                    return new TanhLayer(neuronCount);
+                default:
+                    throw new Exception("不存在该图层类型！");
             }
         }
     }
