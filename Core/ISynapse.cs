@@ -62,7 +62,7 @@ namespace NeuronDotNet.Core
         void Propagate();
 
         /// <summary>
-        /// 优化这个突触的重量
+        /// 优化这个突触的权重
         /// </summary>
         /// <param name="learningFactor">
         /// 有效学习因素。 这主要是训练进度和学习的函数率。 它也可以取决于其他因素，如Kohonen网络中的邻域函数。

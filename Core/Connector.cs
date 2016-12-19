@@ -52,7 +52,7 @@ namespace NeuronDotNet.Core
         protected readonly TSynapse[] synapses;
 
         /// <summary>
-        /// 连接模式（单一连接模式或完全连接模式）。它在构造函数中初始化并且是不可变的。
+        /// 连接模式（一一对应模式或完全连接模式）。它在构造函数中初始化并且是不可变的。
         /// </summary>
         protected readonly ConnectionMode connectionMode;
 
@@ -175,7 +175,7 @@ namespace NeuronDotNet.Core
         /// </exception>
         protected Connector(TSourceLayer sourceLayer, TTargetLayer targetLayer, ConnectionMode connectionMode)
         {
-            // Validate
+            // 验证
             Helper.ValidateNotNull(sourceLayer, "sourceLayer");
             Helper.ValidateNotNull(targetLayer, "targetLayer");
 
